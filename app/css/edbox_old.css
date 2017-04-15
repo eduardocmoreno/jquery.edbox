@@ -1,0 +1,65 @@
+/* boxClass = box (default) */
+.box{
+	padding:24px;
+}
+.box,
+.box-load{
+	background-color:#fff;
+	box-shadow:0 0 10px rgba(0, 0, 0, 0.5);
+}
+.box-load{
+	padding:10px;
+	border-radius:34px;
+}
+.box-overlay{
+	background:#000;
+	opacity:.5;
+}
+.box > .box-close{
+	white-space:nowrap;
+	top:0;
+	right:0;
+	border:0;
+	background:none;
+	color:#000;
+}
+.box > .box-close img{
+	display:block;
+	border:0;
+}
+
+
+/* modalClass = modal (default) */
+.modal{
+	padding:24px;
+}
+.modal,
+.modal-load{
+	border:1px solid red;
+	background-color:#FFCECE;
+}
+.modal-load{
+	padding:10px;
+	border-radius:34px;
+}
+.modal-content{
+	padding:20px;
+	border:5px solid green;
+	background:blue;
+}
+.modal-overlay{
+	background:#000;
+	opacity:.5;
+}
+.modal > .modal-close{
+	white-space:nowrap;
+	top:0;
+	right:0;
+	border:0;
+	background:none;
+	color:#000;
+}
+.modal > .modal-close img{
+	display:block;
+	border:0;
+}

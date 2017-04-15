@@ -1,0 +1,34 @@
+{
+  "name": "edbox",
+  "version": "1.0.0",
+  "description": "edbox jquery plugin",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-uglify": "^2.0.1",
+    "gulp-watch": "^4.3.11"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardocmoreno/edBox.git"
+  },
+  "keywords": [
+    "jquery",
+    "modal",
+    "plugin"
+  ],
+  "author": "Eduardo Moreno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eduardocmoreno/edBox/issues"
+  },
+  "homepage": "https://github.com/eduardocmoreno/edBox#readme"
+}

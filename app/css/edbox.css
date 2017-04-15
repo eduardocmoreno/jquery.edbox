@@ -1,0 +1,136 @@
+[class*='box'] {
+	box-sizing: border-box;
+}
+.edbox{
+	display: flex;
+	justify-content: center;
+	align-items: center;	
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: rgba(0,0,0,.5);
+	z-index: 100;
+}
+.edbox-load,
+.edbox-body {
+	position: relative;
+}
+.edbox-load,
+.edbox-body {
+	box-shadow: 0 0 30px rgba(0,0,0,.5);
+	z-index: 102;	
+}
+.edbox-load {
+	width: 50px;
+	height: 50px;
+	border-radius: 5px;
+	background: url('../images/loading.svg') center no-repeat #fff;
+	background-size: 50px;
+}
+.edbox-body {
+	max-width: calc(100vw - 60px);
+	max-height: calc(100vh - 60px);
+}
+.edbox-container {
+	overflow: auto;
+}
+.edbox-content{
+	transition: .35s;
+}
+.edbox-content.edbox-loading{
+	min-width: 50px;
+	min-height: 50px;
+	background: url('../images/loading.svg') center no-repeat #fff;
+	background-size: 50px;
+}
+.edbox-content > img{
+	display: block !important;
+}
+.edbox-header,
+.edbox-footer{
+	padding: 10px;
+	width: 100%;
+	min-height: 20px;
+	background: olive;
+	color: #fff;
+	text-transform: uppercase;
+	text-align: center;
+	text-shadow: 1px 1px 0 rgba(0,0,0,.5);
+}
+.edbox-header{
+	padding-right: 40px;	
+}
+.edbox-body.edbox-scroll-true .edbox-close{
+	right: 25px;
+}
+.edbox-header + .edbox-close{
+	top: 10px;
+	right: 10px !important;
+}
+.edbox-close {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	color: #000;
+	cursor: pointer;
+	transition: .35s;
+	line-height: 0.5;
+	cursor: pointer;
+	z-index: 1;
+}
+.edbox-close:before{	
+	display: block;
+	transform: rotate(45deg);
+	color: #fff;
+	font-family: Arial;
+	font-size: 30px;
+	text-shadow: 0 0 5px rgba(0,0,0,.5);
+	content: '+';
+}
+.edbox-error {
+	position: relative;
+	background: red;
+	color: #fff;
+	padding: 30px;
+}
+
+.edbox.parent-class .edbox-overlay{
+	background: rgba(45,67,21, .9);
+}
+
+.edbox-temp{
+	display: none;
+}
+
+.edbox-helper-class{
+	display: inline-block !important;
+}
+
+/* Default Animations */
+.edbox-animate-open{
+	animation: edbox-animate-open .35s ease-in-out forwards;
+}
+.edbox-animate-close{
+	animation: edbox-animate-close .35s ease-in-out forwards;
+}
+
+@keyframes edbox-animate-open {
+	from {
+		transform: translateY(-20px);
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+@keyframes edbox-animate-close {
+	from {
+		opacity: 1;
+	}
+	to {
+		transform: translateY(20px);
+		opacity: 0;
+	}
+}
