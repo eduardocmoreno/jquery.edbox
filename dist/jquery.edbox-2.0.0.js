@@ -1,12 +1,7 @@
 /*
-* jQuery Edbox plugin v.2.0.0 beta
+* jQuery Edbox plugin v.2.0.0
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
-*/
-
-/**
-*@TODO Verificar scroll quando carregar um target com imagem dentro
-*@TODO Verificar scroll no firefox usando teste.php
 */
 
 ;(function($, ed) {
@@ -45,23 +40,12 @@
             click: function(e){
                 ed.opt.close && e.target == e.currentTarget && ed.animate('close');
             },
-
             keydown: function(e){
                 ed.opt.close && e.which == 27 && ed.animate('close');
             },
-
             resize: function(){
-                var yScroll = ed.boxBody.outerHeight() < ed.boxContent.outerHeight() ? true : false;
-
+                var yScroll = ed.boxContainer.outerHeight() < ed.boxContent.outerHeight() ? true : false;
                 ed.boxBody[yScroll ? 'addClass' : 'removeClass'](ed.opt.prefix + '-scroll-true');
-
-                ed.boxContainer
-                .height('auto')
-                .width('auto')
-                .css({
-                    height: ed.boxBody.outerHeight() - (ed.boxHeader.outerHeight()) - (ed.boxFooter.outerHeight()),
-                    width: Math.ceil(ed.boxBody.outerWidth())
-                });
             }
         }
 

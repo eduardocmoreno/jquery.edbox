@@ -1,24 +1,14 @@
 {
   "name": "edbox",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "edbox jquery plugin",
   "main": "gulpfile.js",
-  "dependencies": {
-    "gulp": "^3.9.1"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.8",
-    "gulp": "^3.9.1",
-    "gulp-concat": "^2.6.1",
-    "gulp-uglify": "^2.0.1",
-    "gulp-watch": "^4.3.11"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eduardocmoreno/edBox.git"
+    "url": "git+https://github.com/eduardocmoreno/edbox2.git"
   },
   "keywords": [
     "jquery",
@@ -28,7 +18,21 @@
   "author": "Eduardo Moreno",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/eduardocmoreno/edBox/issues"
+    "url": "https://github.com/eduardocmoreno/edbox2/issues"
   },
-  "homepage": "https://github.com/eduardocmoreno/edBox#readme"
+  "homepage": "https://github.com/eduardocmoreno/edbox2",
+  "dependencies": {
+    "bower": "^1.8.0",
+    "browser-sync": "^2.18.8",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-filter": "^5.0.0",
+    "gulp-main-bower-files": "^1.6.2",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.1.2"
+  }
 }
