@@ -1,9 +1,457 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>jQuery edbox2</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="jQuery edBox plugin">
+	<meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal">
+	<meta name="author" content="Eduardo Moreno">
+	<title>jQuery edbox plugin</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+	<link rel="stylesheet" href="/assets/components/prism/themes/prism-okaidia.min.css">
+	<link rel="stylesheet" href="/assets/css/edbox.css">
+	<link rel="stylesheet" href="/assets/css/styles.css">
 </head>
 <body>
-Page under construction!
+	
+	<header>
+		<img src="assets/images/logo.png" alt="" class="logo">
+	</header>
+
+	<div class="container">
+		<hr>
+		
+		<h2>How to use?</h2>
+		<p>There's a several ways to use edBox! Check the examples and the options below.</p>
+
+		<hr>
+
+		<!-- example 1 -->
+		<h2>Example 01</h2>
+		<p>
+			<a class="btn example1" href="#target1">&lta/> tag</a> 
+			<button class="btn example1" data-box-target="#target1">&lt;button/> tag</button>
+		</p>
+		<span id="target1">Hello! This is the example 1!</span>
+		<div class="codes">
+			<div>
+				<h3>html</h3>
+<pre><code class="language-markup">&lt;!--Set target element ID by attr href -->
+&lt;a class="example1" href="#target1">example 1&lt;/a>
+&lt;!--or by attr data-box-content in any otter element tag -->
+&lt;button class="example1" data-box-content="#target1">example 1&lt;/button>
+&lt;div id="target1">
+	Hello! This is the example 1!
+&lt;/div></code></pre>
+			</div>
+			<div>
+				<h3>css</h3>
+<pre><code class="language-css">#target1{
+	padding: 50px;
+	background: crimson;
+	color: #fff;
+	font-size: 30px;
+	display: none;
+}</code></pre>
+			</div>
+			<div>
+				<h3>jQuery</h3>
+<pre><code class="language-javascript">//simple use
+$('.example1').edbox();</code></pre>
+			</div>
+		</div>
+
+		<hr>
+		
+		<!-- example 2 -->
+		<h2>Example 02</h2>
+		<p>
+			<a class="btn" id="example2" href="#">example 2</a>
+		</p>
+		<div id="target2">Hello again! This is the example 2!</div>
+		<div class="codes">
+			<div>
+				<h3>html</h3>
+<pre><code class="language-markup">&lt;a id="example2" href="#">example 2&lt;/a>
+&lt;div id="target2">
+	Hello again! This is the example 2!
+&lt;/div></code></pre>
+			</div>
+			<div>
+				<h3>css</h3>
+<pre><code class="language-css">#target2{
+	padding: 20px;
+	background: darkolivegreen;
+	color: #fff;
+	font-size: 50px;
+	display: none;
+}</code></pre>
+			</div>
+			<div>
+				<h3>jQuery</h3>
+<pre><code class="language-javascript">$('#example2').edbox({
+	//set the content by option instead href attr
+	content: '#target2',
+	//config as needed
+	width: 300,
+	fx: 'fade',
+	duration: 600,
+	htmlClose: '&lt;img src="assets/images/close-opt-01.png"/>'
+});</code></pre>
+			</div>
+		</div>
+
+		<hr>
+		
+		<!-- example 3 -->
+		<h2>Example 03</h2>
+		<p>
+			<a class="btn" id="example3" href="">example 3</a>
+		</p>
+		<div class="codes">
+			<div>
+				<h3>html</h3>
+<pre><code class="language-markup">&lt;a id="example3" href="#">example 3&lt;/a></code></pre>
+			</div>
+			<div>
+				<h3>css</h3>
+<pre><code class="language-css">#target3{
+	padding: 30px;
+	background: purple;
+	color: #fff;
+	font-size: 20px;
+}</code></pre>
+			</div>
+			<div>
+				<h3>jQuery</h3>
+<pre><code class="language-javascript">$('#example3').edbox({
+	//set the content as HTML string
+	content: '&lt;div id="target3">Whazzup! This is the example 3!&lt;/div>',
+	duration: 1000,
+	//this option require jQuery easing plugin (http://gsgd.co.uk/sandbox/jquery/easing/)
+	easing: 'easeOutBounce',
+	//callback a function after box close
+	//this example will trigger the "example 1" after completely close
+	onClose: function(){
+		$.edbox({
+			content: '#target1'
+		})
+	}
+});</code></pre>
+			</div>
+		</div>
+
+		<hr>
+
+		<!-- example 4 -->
+		<h2>Example 04</h2>
+		<p>
+			<a class="btn" id="example4" href="">example 4</a>
+		</p>
+		<div class="codes">
+			<div>
+				<h3>html</h3>
+<pre><code class="language-markup">&lt;a id="example4" href="#">example 4&lt;/a></code></pre>
+			</div>
+			<div>
+				<h3>jQuery</h3>
+<pre><code class="language-javascript">$('#example4').edbox({
+	//load an external page with parameters
+	content: 'php/extpage.php?parameter=edBox',
+	//config a header title if you want
+	header: 'Your page title here',
+	//remove the close button. In this example, we will close the box using a link like
+	//&lt;a href="#" onclick="$.edbox.close(); return false;">close&lt;/a> inside the external page.
+	htmlClose: ''
+});</code></pre>
+			</div>
+		</div>
+
+		<hr>
+
+		<h2>Options</h2>
+
+		<table class="options">
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Default Value</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>content</td>
+					<td>null</td>
+					<td>DOM element, html, text, images or external pages</td>
+				</tr>
+				<tr>
+					<td>width</td>
+					<td>null</td>
+					<td>Fixed width</td>
+				</tr>
+				<tr>
+					<td>height</td>
+					<td>null</td>
+					<td>Fixed height</td>
+				</tr>
+				<tr>
+					<td>prefixId</td>
+					<td>box</td>
+					<td>Change this to create your own skin</td>
+				</tr>
+				<tr>
+					<td>htmlClose</td>
+					<td>&lt;img src="assets/images/close-modal.png"/&gt;</td>
+					<td>html, text or images</td>
+				</tr>
+				<tr>
+					<td>header</td>
+					<td>null</td>
+					<td>Header content</td>
+				</tr>
+				<tr>
+					<td>footer</td>
+					<td>null</td>
+					<td>Footer content</td>
+				</tr>
+				<tr>
+					<td>beforeOpen</td>
+					<td>function() {}</td>
+					<td>Callback before open</td>
+				</tr>
+				<tr>
+					<td>beforeClose</td>
+					<td>function() {}</td>
+					<td>Callback before close</td>
+				</tr>
+				<tr>
+					<td>onOpen</td>
+					<td>function() {}</td>
+					<td>Callback after open</td>
+				</tr>
+				<tr>
+					<td>onClose</td>
+					<td>function() {},</td>
+					<td>Callback after close</td>
+				</tr>
+				<tr>
+					<td>disableClose</td>
+					<td>false</td>
+					<td>Disable / enable close function</td>
+				</tr>
+				<tr>
+					<td>imgLoad</td>
+					<td>assets/images/box-load.gif</td>
+					<td>Load image url location</td>
+				</tr>
+				<tr>
+					<td>animation</td>
+					<td>true</td>
+					<td>Disable / enable animations</td>
+				</tr>
+				<tr>
+					<td>fx</td>
+					<td>slide</td>
+					<td>Animation type (slide, fade or toggle)</td>
+				</tr>
+				<tr>
+					<td>duration</td>
+					<td>fast</td>
+					<td>Animation duration (fast, slow or set milisseconds)</td>
+				</tr>
+				<tr>
+					<td>easing</td>
+					<td>swing</td>
+					<td>Animation easing <br> require jQuery easing plugin - <a class="link" href="http://gsgd.co.uk/sandbox/jquery/easing/">http://gsgd.co.uk/sandbox/jquery/easing/</a></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<hr>
+
+		<h2>Methods</h2>
+<pre><code class="language-javascript">//Trigger by DOM element click
+$('#example').edbox();
+
+//Init box function
+$.edbox();
+
+//Close box function
+$.edbox.close();
+</code></pre>
+
+		<hr/>
+
+		<h2>Change log</h2>
+
+		<div>
+			<b>version 1.1.0</b>
+			<ul>
+				<li>New: option ID</li>
+				<li>New: option animation (boolean)</li>
+				<li>New: option duration</li>
+				<li>New: option easing</li>
+				<li>Improved: Dimensions setup</li>
+				<li>Improved: Scroll functions</li>
+			</ul>
+
+			<b>version 1.2.0</b>
+			<ul>
+				<li>New: Added $.edbox() function</li>
+				<li>New: Added animation types (slide, fade and toggle)</li>
+				<li>Fixed: close modal while loading issue</li>
+			</ul>
+
+			<b>version 1.3.0</b>
+			<ul>
+				<li>
+					New: option onClose callback
+				</li>
+			</ul>
+			
+			<b>version 1.4.0</b>
+			<ul>
+				<li>New: option disableClose</li>
+				<li>New: method to call closeBox function with callback</li>
+				<li>Changed: option "close" to "htmlClose"</li>
+				<li>Changed: option "boxClass" to "className"</li>
+				<li>Fixed: issue getting dimensions of the content</li>
+				<li>Fixed: centering load image when using padding</li>
+				<li>Fixed: content validation when using html</li>
+				<li>Removed: option bgColor</li>
+				<li>Removed: option overlayBgColor</li>
+			</ul>
+
+			<b>version 1.4.1</b>
+			<ul>
+				<li>Improved: setting dimensions to the window</li>
+			</ul>
+
+			<b>version 1.5.0</b>
+			<ul>
+				<li>New: option onOpen callback</li>
+				<li>New: header and footer</li>
+				<li>Changed: option className to prefixId</li>
+			</ul>
+						
+			<b>version 1.6.0</b>
+			<ul>
+				<li>New: option beforeOpen callback</li>
+				<li>New: option beforeClose callback</li>
+				<li>Changed: Content option treatment for DOM elements</li>
+			</ul>
+
+			<b>Version 1.6.1</b>
+			<ul>
+				<li>Changed: Methods treatment</li>
+				<li>Changed: Error messages treatment</li>
+			</ul>
+
+			<b>Version 1.7.0</b>
+			<ul>
+				<li>New: css file</li>
+				<li>Removed: option overlayBg (config in css file)</li>
+				<li>Fixed: header/footer dimensions</li>
+				<li>Fixed: Plugin instances</li>
+				<li>Changed: modal close options</li>
+				<li>Improved: updated some jquery methods</li>
+			</ul>
+		</div>
+
+		<hr/>
+
+		<h2>Author</h2>
+
+		<div>
+			<p><b>Eduardo Moreno</b><br>Front-end developer and Webdesiger director</p>
+			<p>
+				<img src="assets/images/icon-portfolio.png" alt="Porftolio" class="icon"/>
+				<a href="http://edumoreno.com.br" class="link">
+					http://edumoreno.com.br
+				</a>
+			</p>
+			<p>
+				<img src="assets/images/icon-github.png" alt="Github" class="icon"/>
+				<a href="https://github.com/eduardocmoreno/edslider" class="link" target="_blank">
+					github.com/eduardocmoreno/edslider
+				</a>
+			</p>
+			<p>
+				<img src="assets/images/icon-facebook.png" alt="Facebook" class="icon"/>
+				<a href="https://www.facebook.com/eduardomoreno81" class="link" target="_blank">
+					facebook.com/eduardomoreno81
+				</a>
+			</p>
+			<p>
+				<img src="assets/images/icon-linkedin.png" alt="Linkedin" class="icon"/>
+				<a href="http://lnkd.in/59e_uq" class="link" target="_blank">
+					lnkd.in/59e_uq
+				</a>
+			</p>
+		</div>
+
+		<hr/>
+
+		<p style="text-align: center;">Copyright © 2016 - Eduardo Moreno</p>
+
+	</div>
+
+	<div id="target3">Whazzup! This is the example 3!</div>
+
+	<script src="/assets/components/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/js/jquery.edbox-2.0.0.js"></script>
+	<script src="/assets/components/prism/prism.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('.example1').edbox();
+			$('#example2').edbox({
+				target: '#target2',
+				//width: 300
+			});
+			$('#example3').edbox({
+				//target: '#target3'
+				/*content: '<div id="target3">Whazzup! This is the example 3!</div>',
+				afterClose: function(){
+					$.edbox({
+						content: '#target1'
+					})
+				}*/
+			});
+			$.edboxDefaults({animation: false});
+			$('#example4').edbox({
+				//target: '#target1',
+				//html: '<div class="example-html">Hellow World!</div>',
+				image: 'assets/images/horizontal-image.png',
+				//url: 'test/extpage.php?parameter=edbox',
+				//url: 'test/teste.php',
+				//height: 100,
+				//width: 300,
+				//header: 'Page header here',
+				footer: 'Page footer here',
+				animateOpen: 'animated bounceInLeft',
+				animateClose: 'animated bounceOutRight',
+				parentClass: 'parent-class',
+				beforeOpen: function(){
+					//console.log('antes de abrir');
+				},
+				afterOpen: function(){
+					//console.log('depois que abriu');
+				},
+				afterClose: function(){
+					console.log('closed');
+					/*$.edbox({
+						target: '#target1'
+					});*/
+				}
+			});
+			//$('#example4').edbox('close');
+
+		});
+	</script>
+
+	<form action="get">
+		<input type="text" name="email">
+		<button type="submit"></button>
+	</form>
 </body>
 </html>
