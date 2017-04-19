@@ -92,13 +92,13 @@ gulp.task('sass:dist', function() {
 
 //Assets - distribution
 gulp.task('assets:dist', function(){
-    gulp.src('assets/images/loading.svg')
+    return gulp.src('assets/images/loading.svg')
     .pipe(gulp.dest('dist'));
 });
 
 //Clean dist folder
 gulp.task('clean:dist', function(){
-    gulp.src('dist')
+    return gulp.src('dist')
     .pipe(clean());
 });
 
@@ -113,5 +113,5 @@ gulp.task('default', function(){
 
 //Dist task
 gulp.task('dist', ['clean:dist'], function(){
-    gulp.start('sass:dist','js:dist','assets:dist');
+    return gulp.start('sass:dist','js:dist','assets:dist');
 });

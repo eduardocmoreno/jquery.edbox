@@ -4,11 +4,11 @@
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
 
-;(function($, ed) {
+;(function(defaults, $, ed) {
 
     function edbox(options, el) {
         ed     = this;
-        ed.opt = $.extend({}, $.edbox.defaults, options);
+        ed.opt = $.extend({}, defaults, options);
 
         ed.opt.beforeOpen();
 
@@ -28,7 +28,6 @@
         ed.boxLoad      = $('<div class="' + ed.opt.prefix + '-load"/>');
         ed.boxBody      = $('<div class="' + ed.opt.prefix + '-body"/>');
         ed.boxClose     = $('<div class="' + ed.opt.prefix + '-close"/>');
-        ed.boxContainer = $('<div class="' + ed.opt.prefix + '-container"/>');
         ed.boxContent   = $('<div class="' + ed.opt.prefix + '-content"/>');
         ed.boxHeader    = $('<div class="' + ed.opt.prefix + '-header"/>');
         ed.boxFooter    = $('<div class="' + ed.opt.prefix + '-footer"/>');
@@ -36,121 +35,128 @@
 
         ed.animateEvents = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
 
-        ed.events = {
-            click: function(e){
-                ed.opt.close && e.target == e.currentTarget && ed.animate('close');
-            },
-            keydown: function(e){
-                ed.opt.close && e.which == 27 && ed.animate('close');
-            },
-            resize: function(){
-                var yScroll = ed.boxContainer.outerHeight() < ed.boxContent.outerHeight() ? true : false;
-                ed.boxBody[yScroll ? 'addClass' : 'removeClass'](ed.opt.prefix + '-scroll-true');
-            }
-        }
+        /*ed.events = {
+
+        }*/
 
         ed.init();
 
         return;
     }
 
-    edbox.prototype.init = function(){
-        if(ed.target){
-            ed.target = $(ed.target);
+    edbox.prototype = {
+        init: function(){
+            if(ed.target){
+                ed.target = $(ed.target);
 
-            if (ed.target.length) {
-                ed.target.after(ed.boxTemp);
-                ed.base().insert(ed.target.addClass(ed.opt.prefix + '-helper-class'));
+                if (ed.target.length) {
+                    ed.target.after(ed.boxTemp);
+                    ed.base().insert(ed.target.addClass(ed.opt.prefix + '-helper-class'));
+                }
+
+                else {
+                    console.error('Unable to find element \"' + ed.target + '\"');
+                }
+
+                return;
+            } 
+
+            if(ed.html){
+                ed.base().insert(ed.html);
+                return;
             }
 
-            else {
-                console.error('Unable to find element \"' + ed.target + '\"');
+            if(ed.image){
+                ed.base();
+
+                ed.imageObj = new Image();
+                ed.imageObj.src = ed.image;
+
+                ed.imageObj.complete ? ed.insert(ed.imageObj) : ed.load(ed.image);
+
+                return;
             }
 
-            return;
-        } 
-        
-        if(ed.html){
-            ed.base().insert(ed.html);
-            return;
-        }
+            if(ed.url){
+                ed.base().load(ed.url);
+                return;
+            }
+        },
 
-        if(ed.image){
-            ed.base();
-
-            ed.imageObj = new Image();
-            ed.imageObj.src = ed.image;
-
-            ed.imageObj.complete ? ed.insert(ed.imageObj) : ed.load(ed.image);
-
-            return;
-        }
-
-        if(ed.url){
-            ed.base().load(ed.url);
-            return;
-        }
-    }
-
-    edbox.prototype.load = function(content){
-        ed.loading = true;
-        ed.box.append(ed.boxLoad);
-        ed.animate('open', function(){
-            ed.urlLoad = $.get(content)
-            .fail(function(){
-                ed.animate('close', function(){
-                    ed.box.remove();
-                });
-            })
-            .done(function(data){
-                ed.animate('close', function(){
-                    ed.loading = false;
-                    ed.boxLoad.remove();
-                    ed.insert(ed.imageObj || data);
+        load: function(content){
+            ed.loading = true;
+            ed.box.append(ed.boxLoad);
+            ed.toggle('open', function(){
+                ed.urlLoad = $.get(content)
+                .fail(function(){
+                    ed.toggle('close', function(){
+                        ed.box.remove();
+                    });
+                })
+                .done(function(data){
+                    ed.toggle('close', function(){
+                        ed.loading = false;
+                        ed.boxLoad.remove();
+                        ed.insert(ed.imageObj || data);
+                    });
                 });
             });
-        });
-    }
+        },
 
-    edbox.prototype.base = function(){
-        $('body').prepend(
-            ed.box.addClass(ed.opt.parentClass).one('click', ed.events.click)
-            );
-        
-        $(window).one('keydown', ed.events.keydown);
+        events: {
+            click: function(e){
+                ed.opt.close && e.target == e.currentTarget && ed.toggle('close');
+            },
+            keydown: function(e){
+                ed.opt.close && e.which == 27 && ed.toggle('close');
+            },
+            resize: function(){
+                var body_h = ed.boxBody.outerHeight();
+                var header_h = ed.boxHeader.outerHeight();
+                var footer_h = ed.boxFooter.outerHeight();
+                var content_h = ed.boxContent.get(0).scrollHeight;
+                var overflow = Math.ceil(body_h - (header_h + footer_h)) < content_h ? true : false;
+                ed.boxBody[overflow ? 'addClass' : 'removeClass'](ed.opt.prefix + '-scroll-true');
+            }
+        },
 
-        return this;
-    }
+        base: function(){
+            $('body').prepend(
+                ed.box.addClass(ed.opt.parentClass).one('click', ed.events.click)
+                );
 
-    edbox.prototype.insert = function(content){
-        ed.box.append(
-            ed.boxBody
-            .css({
-                width: ed.opt.width,
-                height: ed.opt.height
-            })
-            .append(
-                ed.opt.header && ed.boxHeader.html(ed.opt.header),
-                ed.boxClose.one('click', ed.events.click),
-                ed.boxContainer.append(ed.boxContent.append(content)),
-                ed.opt.footer && ed.boxFooter.html(ed.opt.footer)
+            $(window).one('keydown', ed.events.keydown);
+
+            return this;
+        },
+
+        insert: function(content){
+            ed.box.append(
+                ed.boxBody
+                .css({
+                    width: ed.opt.width,
+                    height: ed.opt.height
+                })
+                .append(
+                    ed.opt.header && ed.boxHeader.html(ed.opt.header),
+                    ed.boxClose.one('click', ed.events.click),
+                    ed.boxContent.append(content),
+                    ed.opt.footer && ed.boxFooter.html(ed.opt.footer)
+                    )
                 )
-            )
 
-        !ed.opt.close && ed.boxClose.css('display', 'none');
-        $(window).on('resize', ed.events.resize).resize();
-        ed.animate('open');
-    }
+            !ed.opt.close && ed.boxClose.css('display', 'none');
+            $(window).on('resize', ed.events.resize).resize();
+            ed.toggle('open');
+        },
 
-    edbox.prototype.animate = function(toggle, callback){
-        var toggleObj = {
+        callback: {
             open: function(){
                 if(!ed.loading){
                     ed.image && ed.boxLoad.remove();
                     ed.opt.afterOpen();
                 }
             },
-
             close: function(){
                 $(window).off({
                     keydown: ed.events.keydown,
@@ -166,58 +172,66 @@
 
                 ed.box.remove();
             }
-        }
+        },
 
-        if(ed.opt.animation){
-            (ed.loading ? ed.boxLoad : ed.boxBody)
-            .addClass(toggle == 'open' ? ed.opt.animateOpen : ed.opt.animateClose)
-            .one(ed.animateEvents, function() {
-                typeof callback == 'function' ? callback() : toggleObj[toggle]();
+        toggle: function(toggle, callback){
+            if(ed.opt.animation){
+                (ed.loading ? ed.boxLoad : ed.boxBody)
+                .addClass(toggle == 'open' ? ed.opt.animateOpen : ed.opt.animateClose)
+                .one(ed.animateEvents, function() {
+                    typeof callback == 'function' ? callback() : ed.callback[toggle]();
+                });
+            } else {
+                typeof callback == 'function' ? callback() : ed.callback[toggle]();
+            }
+        }
+    }
+
+    $.extend({
+        edbox: function (options){
+            var data = $.data(window, 'edboxData');
+
+            if(typeof options === 'string' && options === 'close' && typeof data == 'object'){
+                data.toggle('close');
+                $.removeData(window, 'edboxData');
+                return;
+            }
+
+            if(typeof options == 'object') {
+                $.data(window, 'edboxData', new edbox(options));
+                return;
+            }
+        },
+        edboxDefaults: function(options){
+            return $.extend(defaults, options);
+        }
+    })
+    .fn.extend({
+        edbox: function(options) {
+            this.on('click', function(e) {
+                e.preventDefault();
+                $.data(window, 'edboxData', new edbox(options, this));
             });
-        } else {
-            typeof callback == 'function' ? callback() : toggleObj[toggle]();
         }
-    }
+    });
 
-    $.edbox = function (options){
-        var data = $.data(window, 'edboxData');
-
-        if(typeof options === 'string' && options === 'close' && typeof data == 'object'){
-            data.animate('close');
-            $.removeData(window, 'edboxData');
-        }
-
-        else if(typeof options == 'object' && !data) {
-            $.data(window, 'edboxData', new edbox(options));
-        }
-    };
-
-    $.fn.edbox = function(options) {
-        this.on('click', function(e) {
-            e.preventDefault();
-            $.data(window, 'edboxData', new edbox(options, this));
-        });
-    }
-
-    $.edbox.defaults = {
-        target       : null,
-        html         : null,
-        image        : null,
-        url         : null,
-        width        : null,
-        height       : null,
-        prefix       : 'edbox',
-        parentClass  : '',
-        header       : '',
-        footer       : '',
-        close        : true,
-        animation    : true,
-        animateOpen  : 'edbox-animate-open',
-        animateClose : 'edbox-animate-close',
-        beforeOpen   : function() {},
-        beforeClose  : function() {},
-        afterOpen    : function() {},
-        afterClose   : function() {}
-    }
-
-})(jQuery);
+})({
+    target       : null,
+    html         : null,
+    image        : null,
+    url          : null,
+    width        : null,
+    height       : null,
+    prefix       : 'edbox',
+    parentClass  : '',
+    header       : '',
+    footer       : '',
+    close        : true,
+    animation    : true,
+    animateOpen  : 'edbox-animate-open',
+    animateClose : 'edbox-animate-close',
+    beforeOpen   : function() {},
+    beforeClose  : function() {},
+    afterOpen    : function() {},
+    afterClose   : function() {}
+}, jQuery);
