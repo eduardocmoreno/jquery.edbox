@@ -10,21 +10,15 @@
         ed     = this;
         ed.opt = $.extend({}, defaults, options);
 
-        ed.opt.beforeOpen();
 
         ed.target = ed.opt.target || $(el).attr('data-box-target') || $(el).attr('href');
         ed.html   = ed.opt.html   || $(el).attr('data-box-html');
         ed.image  = ed.opt.image  || $(el).attr('data-box-image');
         ed.url    = ed.opt.url    || $(el).attr('data-box-url');
         
-        var content = ed.target || ed.html || ed.image || ed.url;
-
-        if(!content){
-            console.error('undefined content. Try to set any of contents option like target: \'#element\'');
-            return;
-        }
 
         ed.box          = $('<div class="' + ed.opt.prefix + '"/>');
+        ed.boxError     = $('<div class="' + ed.opt.prefix + '-error"/>');
         ed.boxLoad      = $('<div class="' + ed.opt.prefix + '-load"/>');
         ed.boxBody      = $('<div class="' + ed.opt.prefix + '-body"/>');
         ed.boxClose     = $('<div class="' + ed.opt.prefix + '-close"/>');
@@ -35,72 +29,105 @@
 
         ed.animateEvents = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
 
-        /*ed.events = {
-
-        }*/
-
         ed.init();
-
-        return;
     }
 
     edbox.prototype = {
         init: function(){
-            if(ed.target){
-                ed.target = $(ed.target);
+            ed.base();
 
-                if (ed.target.length) {
-                    ed.target.after(ed.boxTemp);
-                    ed.base().insert(ed.target.addClass(ed.opt.prefix + '-helper-class'));
+            if(!(ed.target || ed.html || ed.image || ed.url)){
+                ed.error('undefined content');
+                return;
+            }
+
+            ed.opt.beforeOpen();
+
+            if(ed.target){
+                var elem = $(ed.target);
+
+                if (elem.length) {
+                    elem.after(ed.boxTemp);
+                    ed.insert(elem.addClass(ed.opt.prefix + '-helper-class'));
                 }
 
                 else {
-                    console.error('Unable to find element \"' + ed.target + '\"');
+                    ed.error('Unable to find \"' + ed.target + '\" element');
                 }
 
                 return;
-            } 
+            }
 
             if(ed.html){
-                ed.base().insert(ed.html);
+                ed.insert(ed.html);
                 return;
             }
 
             if(ed.image){
-                ed.base();
-
                 ed.imageObj = new Image();
                 ed.imageObj.src = ed.image;
 
-                ed.imageObj.complete ? ed.insert(ed.imageObj) : ed.load(ed.image);
+                ed.imageObj.complete ? ed.insert(ed.imageObj) : ed.load.init('image');
 
                 return;
             }
 
             if(ed.url){
-                ed.base().load(ed.url);
+                ed.load.init('url');
                 return;
             }
         },
 
-        load: function(content){
-            ed.loading = true;
-            ed.box.append(ed.boxLoad);
-            ed.toggle('open', function(){
-                ed.urlLoad = $.get(content)
-                .fail(function(){
-                    ed.toggle('close', function(){
-                        ed.box.remove();
-                    });
+        error: function(msg){
+            ed.responseError = true;
+
+            ed.boxError
+            .text('ERROR: ' + msg)
+            .prepend(ed.boxClose.on('click', ed.events.click));
+
+            ed.box.append(ed.boxError);
+            ed.toggle('open');
+        },
+
+        load: {
+            init: function(type){
+                ed.loading = true;
+
+                ed.box.append(ed.boxLoad);
+
+                ed.toggle('open', function(){
+                    ed.load[type]();                    
+                });
+            },
+
+            image: function(){
+                ed.imageObj = $('<img/>')
+                .attr('src', ed.image)
+                .on('error', function(response){
+                    ed.load.done('error', response);
+                })
+                .on('load', function(){
+                    ed.load.done('insert', null, this);
+                });
+            },
+
+            url: function(){
+                ed.urlLoad = $.get(ed.url)
+                .fail(function(response){
+                    ed.load.done('error', response);
                 })
                 .done(function(data){
-                    ed.toggle('close', function(){
-                        ed.loading = false;
-                        ed.boxLoad.remove();
-                        ed.insert(ed.imageObj || data);
-                    });
+                    ed.load.done('insert', null, data);
                 });
-            });
+            },
+
+            done: function(method, response, data){
+                ed.toggle('close', function(){
+                    ed.loading = false;
+                    ed.boxLoad.remove();
+                    ed[method](response || data);
+                });
+            }        
         },
 
         events: {
@@ -152,7 +179,7 @@
 
         callback: {
             open: function(){
-                if(!ed.loading){
+                if(!ed.loading && !ed.responseError){
                     ed.image && ed.boxLoad.remove();
                     ed.opt.afterOpen();
                 }
@@ -163,12 +190,12 @@
                     resize: ed.events.resize
                 });
 
-                ed.target && ed.target
+                $(ed.target).length && $(ed.target)
                 .removeClass(ed.opt.prefix + '-helper-class')
                 .appendTo(ed.boxTemp)
                 .unwrap();
 
-                ed.loading ? ed.urlLoad.abort() : ed.opt.afterClose();
+                ed.loading ? ed.imageObj.attr('src', null) : !ed.responseError && ed.opt.afterClose();
 
                 ed.box.remove();
             }
@@ -176,7 +203,7 @@
 
         toggle: function(toggle, callback){
             if(ed.opt.animation){
-                (ed.loading ? ed.boxLoad : ed.boxBody)
+                (ed.loading ? ed.boxLoad : (ed.responseError ? ed.boxError : ed.boxBody))
                 .addClass(toggle == 'open' ? ed.opt.animateOpen : ed.opt.animateClose)
                 .one(ed.animateEvents, function() {
                     typeof callback == 'function' ? callback() : ed.callback[toggle]();
@@ -197,7 +224,7 @@
                 return;
             }
 
-            if(typeof options == 'object') {
+            if(typeof options == 'object' && !data) {
                 $.data(window, 'edboxData', new edbox(options));
                 return;
             }
