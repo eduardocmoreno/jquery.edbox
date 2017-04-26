@@ -6,10 +6,10 @@
 	<meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal">
 	<meta name="author" content="Eduardo Moreno">
 	<title>jQuery edbox plugin</title>
-	<link rel="stylesheet" href="/assets/components/prism/themes/prism-okaidia.min.css">
-	<link rel="stylesheet" href="/assets/components/animate.css/animate.min.css">
-	<link rel="stylesheet" href="/assets/css/edbox.css">
-	<link rel="stylesheet" href="/assets/css/styles.css">
+	<link rel="stylesheet" href="assets/components/prism/themes/prism-okaidia.min.css">
+	<link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/edbox.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 	
@@ -29,7 +29,7 @@
 		<h2>Example 01</h2>
 		<p>
 			<a class="btn example1" href="#target1">&lta/> tag</a> 
-			<button class="btn example1" data-box-target="#target1">&lt;button/> tag</button>
+			<button class="btn example1" data-box-target="#target2">&lt;button/> tag</button>
 		</p>
 		<span id="target1">Hello! This is the example 1!</span>
 		<div class="codes">
@@ -398,11 +398,21 @@ $.edbox.close();
 
 	<div id="target3">Whazzup! This is the example 3!</div>
 
-	<script src="/assets/components/jquery/dist/jquery.min.js"></script>
-	<script src="/assets/js/jquery.edbox-2.0.0.js"></script>
-	<script src="/assets/components/prism/prism.min.js"></script>
+	<script src="assets/components/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/jquery.edbox-2.0.0.js"></script>
+	<script src="assets/components/prism/prism.min.js"></script>
 	<script>
 		$(document).ready(function() {
+			/*$.edboxSettings({
+				image: 'assets/images/vertical-image.png',
+				//prefix: 'teste'
+				header: 'teste<br>teste',
+				footer: 'teste<br>teste',
+				width: 500,
+				height: 200,
+				parentClass: 'parent-class',
+				//close: false,
+			});*/
 			$('.example1').edbox();
 			$('#example2').edbox({
 				target: '#target2',
@@ -417,7 +427,6 @@ $.edbox.close();
 					})
 				}*/
 			});
-			//$.edboxDefaults({animation: false});
 			$('#example4').edbox({
 				//target: '#target1',
 				//html: '<div class="example-html">Hellow World!</div>',
@@ -427,10 +436,10 @@ $.edbox.close();
 				//url: 'test/teste.php',
 				//height: 100,
 				//width: 300,
-				//header: 'Page header here',
+				header: 'Page header here',
 				footer: 'Page footer here',
-				animateOpen: 'animated bounceInLeft',
-				animateClose: 'animated bounceOutRight',
+				//animateOpen: 'animated bounceInLeft',
+				//animateClose: 'animated bounceOutRight',
 				//parentClass: 'parent-class',
 				beforeOpen: function(){
 					//alert('antes de abrir');
