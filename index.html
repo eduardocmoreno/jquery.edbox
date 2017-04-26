@@ -6,15 +6,15 @@
 	<meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal">
 	<meta name="author" content="Eduardo Moreno">
 	<title>jQuery edbox plugin</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-	<link rel="stylesheet" href="css/prism.css">
-	<link rel="stylesheet" href="css/edbox.css">
-	<link rel="stylesheet" href="css/styles.css">
+	<link rel="stylesheet" href="assets/components/prism/themes/prism-okaidia.min.css">
+	<link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
+	<link rel="stylesheet" href="assets/css/edbox.css">
+	<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 	
 	<header>
-		<img src="images/logo.png" alt="" class="logo">
+		<img src="assets/images/logo.png" alt="" class="logo">
 	</header>
 
 	<div class="container">
@@ -29,7 +29,7 @@
 		<h2>Example 01</h2>
 		<p>
 			<a class="btn example1" href="#target1">&lta/> tag</a> 
-			<button class="btn example1" data-box-target="#target1">&lt;button/> tag</button>
+			<button class="btn example1" data-box-target="#target2">&lt;button/> tag</button>
 		</p>
 		<span id="target1">Hello! This is the example 1!</span>
 		<div class="codes">
@@ -95,7 +95,7 @@ $('.example1').edbox();</code></pre>
 	width: 300,
 	fx: 'fade',
 	duration: 600,
-	htmlClose: '&lt;img src="images/close-opt-01.png"/>'
+	htmlClose: '&lt;img src="assets/images/close-opt-01.png"/>'
 });</code></pre>
 			</div>
 		</div>
@@ -201,7 +201,7 @@ $('.example1').edbox();</code></pre>
 				</tr>
 				<tr>
 					<td>htmlClose</td>
-					<td>&lt;img src="images/close-modal.png"/&gt;</td>
+					<td>&lt;img src="assets/images/close-modal.png"/&gt;</td>
 					<td>html, text or images</td>
 				</tr>
 				<tr>
@@ -241,7 +241,7 @@ $('.example1').edbox();</code></pre>
 				</tr>
 				<tr>
 					<td>imgLoad</td>
-					<td>images/box-load.gif</td>
+					<td>assets/images/box-load.gif</td>
 					<td>Load image url location</td>
 				</tr>
 				<tr>
@@ -365,25 +365,25 @@ $.edbox.close();
 		<div>
 			<p><b>Eduardo Moreno</b><br>Front-end developer and Webdesiger director</p>
 			<p>
-				<img src="images/icon-portfolio.png" alt="Porftolio" class="icon"/>
+				<img src="assets/images/icon-portfolio.png" alt="Porftolio" class="icon"/>
 				<a href="http://edumoreno.com.br" class="link">
 					http://edumoreno.com.br
 				</a>
 			</p>
 			<p>
-				<img src="images/icon-github.png" alt="Github" class="icon"/>
+				<img src="assets/images/icon-github.png" alt="Github" class="icon"/>
 				<a href="https://github.com/eduardocmoreno/edslider" class="link" target="_blank">
 					github.com/eduardocmoreno/edslider
 				</a>
 			</p>
 			<p>
-				<img src="images/icon-facebook.png" alt="Facebook" class="icon"/>
+				<img src="assets/images/icon-facebook.png" alt="Facebook" class="icon"/>
 				<a href="https://www.facebook.com/eduardomoreno81" class="link" target="_blank">
 					facebook.com/eduardomoreno81
 				</a>
 			</p>
 			<p>
-				<img src="images/icon-linkedin.png" alt="Linkedin" class="icon"/>
+				<img src="assets/images/icon-linkedin.png" alt="Linkedin" class="icon"/>
 				<a href="http://lnkd.in/59e_uq" class="link" target="_blank">
 					lnkd.in/59e_uq
 				</a>
@@ -398,20 +398,28 @@ $.edbox.close();
 
 	<div id="target3">Whazzup! This is the example 3!</div>
 
-	<!-- <script src="http://code.jquery.com/jquery-latest.min.js"></script> -->
-	<script src="/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="js/jquery.edbox-2.0.0-beta.js"></script>
-	<script src="js/jquery.easing.1.3.js"></script>
-	<script src="js/prism.js"></script>
+	<script src="assets/components/jquery/dist/jquery.min.js"></script>
+	<script src="assets/js/jquery.edbox-2.0.0.js"></script>
+	<script src="assets/components/prism/prism.min.js"></script>
 	<script>
 		$(document).ready(function() {
+			/*$.edboxSettings({
+				image: 'assets/images/vertical-image.png',
+				//prefix: 'teste'
+				header: 'teste<br>teste',
+				footer: 'teste<br>teste',
+				width: 500,
+				height: 200,
+				parentClass: 'parent-class',
+				//close: false,
+			});*/
 			$('.example1').edbox();
 			$('#example2').edbox({
 				target: '#target2',
 				//width: 300
 			});
 			$('#example3').edbox({
-				//target: '#target3'
+				//target: '#target30'
 				/*content: '<div id="target3">Whazzup! This is the example 3!</div>',
 				afterClose: function(){
 					$.edbox({
@@ -419,28 +427,31 @@ $.edbox.close();
 					})
 				}*/
 			});
-			//$.edbox.defaults.animation = false;
 			$('#example4').edbox({
 				//target: '#target1',
 				//html: '<div class="example-html">Hellow World!</div>',
-				//image: 'images/horizontal-image.png',
-				//url: 'php/extpage.php?parameter=edbox',
-				url: 'php/teste.php',
+				//image: 'assets/images/horizontal-image.png',
+				//image: 'assets/images/vertical-image.png',
+				url: 'test/extpage.php?parameter=edbox',
+				//url: 'test/teste.php',
 				//height: 100,
 				//width: 300,
-				//header: 'Page header here',
+				header: 'Page header here',
 				footer: 'Page footer here',
-				animateOpen: 'animated bounceInLeft',
-				animateClose: 'animated bounceOutRight',
+				//animateOpen: 'animated bounceInLeft',
+				//animateClose: 'animated bounceOutRight',
 				//parentClass: 'parent-class',
 				beforeOpen: function(){
-					//console.log('antes de abrir');
+					//alert('antes de abrir');
 				},
 				afterOpen: function(){
-					//console.log('depois que abriu');
+					//alert('depois que abriu');
+				},
+				beforeClose: function(){
+					//alert('antes de fechar');
 				},
 				afterClose: function(){
-					console.log('closed');
+					//alert('depois que fechou');
 					/*$.edbox({
 						target: '#target1'
 					});*/

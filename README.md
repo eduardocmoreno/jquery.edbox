@@ -1,4 +1,4 @@
-# edBox2
+# edbox2
 Modal jQuery Plugin
 
 Under dev
