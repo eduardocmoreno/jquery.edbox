@@ -10,10 +10,10 @@
         self     = this;
         self.opt = $.extend({}, settings, options);
 
-        self.target = self.opt.target || $(el).attr('data-box-target') || $(el).attr('href');
+        self.target = self.opt.target || $(el).attr('data-box-target');
         self.html   = self.opt.html   || $(el).attr('data-box-html');
         self.image  = self.opt.image  || $(el).attr('data-box-image');
-        self.url    = self.opt.url    || $(el).attr('data-box-url');
+        self.url    = self.opt.url    || $(el).attr('data-box-url') || $(el).attr('href');
 
         self.$box          = $('<div class="' + self.opt.prefix + '"/>');
         self.$boxError     = $('<div class="' + self.opt.prefix + '-error"/>');
@@ -35,6 +35,8 @@
             self.base();
 
             var content = self.target || self.html || self.image || self.url;
+
+            console.log(content);
 
             if(!content){
                 self.error('undefined content');

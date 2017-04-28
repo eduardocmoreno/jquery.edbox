@@ -25,7 +25,6 @@
             color: #fff;
             font-family: Lucida;
             font-size: 30px;
-            text-shadow: 0 0 5px rgba(#000,.5);
             content: '+';
         }
     }
@@ -52,7 +51,6 @@
         .edbox-footer{
             padding: 10px;
             width: 100%;
-            min-height: 36px;
             background: #eee;
             color: #333;
         }
@@ -61,16 +59,13 @@
             & + .edbox-close{
                 top: 10px;
                 right: 10px !important;
+                &:before{
+                    color: #000;
+                }
             }
         }
         .edbox-content{
             overflow: auto;
-            .edbox-loading{
-                min-width: 50px;
-                min-height: 50px;
-                background: url('../images/loading.svg') center no-repeat #fff;
-                background-size: 50px;
-            }
             .edbox-helper-class{
                 display: block !important;
             }

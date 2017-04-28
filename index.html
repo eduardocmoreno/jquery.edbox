@@ -29,8 +29,8 @@
 		<!-- example 1 -->
 		<h2>Example 01</h2>
 		<p>
-			<a class="btn example1" href="#target1">&lta/> tag</a> 
-			<button class="btn example1" data-box-target="#target2">&lt;button/> tag</button>
+			<a class="btn example1" href="#" data-box-target="#target1">&lta/> tag</a> 
+			<button class="btn example1" data-box-target="#target1">&lt;button/> tag</button>
 		</p>
 		<span id="target1">Hello! This is the example 1!</span>
 		<!-- <div class="codes">
@@ -147,7 +147,7 @@
 		<!-- example 4 -->
 		<h2>Example 04</h2>
 		<p>
-			<a class="btn" id="example4" href="">example 4</a>
+			<a class="btn" id="example4" href="test/teste.php">example 4</a>
 		</p>
 		<!-- <div class="codes">
 			<div>
@@ -282,84 +282,6 @@ $.edbox({ ...options... });
 $.edbox('close');
 </code></pre>
 
-		<!-- <hr/>
-
-		<h2>Change log</h2>
-
-		<div>
-			<b>version 1.1.0</b>
-			<ul>
-				<li>New: option ID</li>
-				<li>New: option animation (boolean)</li>
-				<li>New: option duration</li>
-				<li>New: option easing</li>
-				<li>Improved: Dimensions setup</li>
-				<li>Improved: Scroll functions</li>
-			</ul>
-		
-			<b>version 1.2.0</b>
-			<ul>
-				<li>New: Added $.edbox() function</li>
-				<li>New: Added animation types (slide, fade and toggle)</li>
-				<li>Fixed: close modal while loading issue</li>
-			</ul>
-		
-			<b>version 1.3.0</b>
-			<ul>
-				<li>
-					New: option onClose callback
-				</li>
-			</ul>
-			
-			<b>version 1.4.0</b>
-			<ul>
-				<li>New: option disableClose</li>
-				<li>New: method to call closeBox function with callback</li>
-				<li>Changed: option "close" to "htmlClose"</li>
-				<li>Changed: option "boxClass" to "className"</li>
-				<li>Fixed: issue getting dimensions of the content</li>
-				<li>Fixed: centering load image when using padding</li>
-				<li>Fixed: content validation when using html</li>
-				<li>Removed: option bgColor</li>
-				<li>Removed: option overlayBgColor</li>
-			</ul>
-		
-			<b>version 1.4.1</b>
-			<ul>
-				<li>Improved: setting dimensions to the window</li>
-			</ul>
-		
-			<b>version 1.5.0</b>
-			<ul>
-				<li>New: option onOpen callback</li>
-				<li>New: header and footer</li>
-				<li>Changed: option className to prefixId</li>
-			</ul>
-						
-			<b>version 1.6.0</b>
-			<ul>
-				<li>New: option beforeOpen callback</li>
-				<li>New: option beforeClose callback</li>
-				<li>Changed: Content option treatment for DOM elements</li>
-			</ul>
-		
-			<b>Version 1.6.1</b>
-			<ul>
-				<li>Changed: Methods treatment</li>
-				<li>Changed: Error messages treatment</li>
-			</ul>
-		
-			<b>Version 1.7.0</b>
-			<ul>
-				<li>New: css file</li>
-				<li>Removed: option overlayBg (config in css file)</li>
-				<li>Fixed: header/footer dimensions</li>
-				<li>Fixed: Plugin instances</li>
-				<li>Changed: modal close options</li>
-				<li>Improved: updated some jquery methods</li>
-			</ul>
-		</div> -->
-
 		<hr/>
 
 		<h2>Author</h2>
@@ -416,10 +338,10 @@ $.edbox('close');
 			$('.example1').edbox();
 			$('#example2').edbox({
 				target: '#target2',
-				//width: 300
+				width: 300
 			});
 			$('#example3').edbox({
-				//target: '#target30'
+				target: '#target3'
 				/*content: '<div id="target3">Whazzup! This is the example 3!</div>',
 				afterClose: function(){
 					$.edbox({
@@ -428,10 +350,10 @@ $.edbox('close');
 				}*/
 			});
 			$('#example4').edbox({
-				//target: '#target1',
+				target: '#target1',
 				//html: '<div class="example-html">Hellow World!</div>',
 				//image: 'assets/images/horizontal-image.png',
-				image: 'assets/images/vertical-image.png',
+				//image: 'assets/images/vertical-image.png',
 				//url: 'test/extpage.php?parameter=edbox',
 				//url: 'test/teste.php',
 				//height: 100,
