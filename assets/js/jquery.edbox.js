@@ -88,6 +88,7 @@
             .prepend(self.$boxClose.on('click', self.events.click));
 
             self.$box.append(self.$boxError);
+            
             self.toggle('open');
         },
 
