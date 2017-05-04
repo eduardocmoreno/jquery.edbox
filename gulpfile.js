@@ -79,7 +79,7 @@ gulp.task('sass:dev', function() {
 
 //SASS-CSS - distribution
 gulp.task('sass:dist', function() {
-    return gulp.src('assets/scss/**/*.scss')
+    return gulp.src('assets/scss/edbox.scss')
     .pipe(gulp.dest('dist'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
