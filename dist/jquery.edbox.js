@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.0.0
+* jQuery Edbox plugin v.2.1.1
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -7,23 +7,24 @@
 ;(function($, settings, self) {
 
     function edbox(options, el) {
-        self     = this;
+        self = this;
+
         self.opt = $.extend({}, settings, options);
 
         self.target = self.opt.target || $(el).attr('data-box-target');
         self.html   = self.opt.html   || $(el).attr('data-box-html');
         self.image  = self.opt.image  || $(el).attr('data-box-image');
-        self.url    = self.opt.url    || $(el).attr('data-box-url') || $(el).attr('href');
+        self.url    = self.opt.url    || $(el).attr('href') || $(el).attr('data-box-url');
 
-        self.$box          = $('<div class="' + self.opt.prefix + '"/>');
-        self.$boxError     = $('<div class="' + self.opt.prefix + '-error"/>');
-        self.$boxLoad      = $('<div class="' + self.opt.prefix + '-load"/>');
-        self.$boxBody      = $('<div class="' + self.opt.prefix + '-body"/>');
-        self.$boxClose     = $('<div class="' + self.opt.prefix + '-close"/>');
-        self.$boxContent   = $('<div class="' + self.opt.prefix + '-content"/>');
-        self.$boxHeader    = $('<div class="' + self.opt.prefix + '-header"/>');
-        self.$boxFooter    = $('<div class="' + self.opt.prefix + '-footer"/>');
-        self.$boxTemp      = $('<div class="' + self.opt.prefix + '-temp"/>');
+        self.$box        = $('<div class="edbox"/>');
+        self.$boxError   = $('<div class="edbox-error"/>');
+        self.$boxLoad    = $('<div class="edbox-load"/>');
+        self.$boxBody    = $('<div class="edbox-body"/>');
+        self.$boxClose   = $('<div class="edbox-close"/>');
+        self.$boxContent = $('<div class="edbox-content"/>');
+        self.$boxHeader  = $('<div class="edbox-header"/>');
+        self.$boxFooter  = $('<div class="edbox-footer"/>');
+        self.$boxTemp    = $('<div class="edbox-temp"/>');
 
         self.animateEvents = 'webkitAnimationEnd oanimationend msAnimationEnd animationend';
 
@@ -35,8 +36,6 @@
             self.base();
 
             var content = self.target || self.html || self.image || self.url;
-
-            console.log(content);
 
             if(!content){
                 self.error('undefined content');
@@ -51,7 +50,7 @@
                 if ($target.length) {
                     $target
                     .after(self.$boxTemp)
-                    .addClass(self.opt.prefix + '-helper-class');
+                    .addClass('edbox-helper-class');
 
                     self.insert($target);
                 } else {
@@ -94,12 +93,12 @@
 
         base: function(){
             self.$box
-            .addClass(self.opt.parentClass)
-            .one('click', self.events.click);
+            .addClass(self.opt.addClass)
+            .on('click', self.events.click);
 
             $('body').prepend(self.$box);
 
-            $(window).one('keydown', self.events.keydown);
+            $(window).on('keydown', self.events.keydown);
         },
 
         insert: function(content){
@@ -111,7 +110,7 @@
                 })
                 .append(
                     self.opt.header && self.$boxHeader.html(self.opt.header),
-                    self.opt.close && self.$boxClose.one('click', self.events.click),
+                    self.opt.close && self.$boxClose.on('click', self.events.click),
                     self.$boxContent.append(content),
                     self.opt.footer && self.$boxFooter.html(self.opt.footer)
                     )
@@ -148,8 +147,7 @@
                         cache: (self.image ? false : true)
                     })
                     .fail(function(response){
-                        console.log(response);
-                        self.load.complete('error', response);
+                        self.load.complete('error', (self.image || self.url) + ' ' + response.statusText.toLowerCase() + '!');
                     })
                     .done(function(data){
                         self.load.complete('insert', null, self.imageObj || data);
@@ -179,7 +177,7 @@
                 var footer_h = self.$boxFooter.outerHeight();
                 var content_h = self.$boxContent.get(0).scrollHeight;
                 var overflow = Math.ceil(body_h - (header_h + footer_h)) < content_h ? true : false;
-                self.$boxBody[overflow ? 'addClass' : 'removeClass'](self.opt.prefix + '-scroll-true');
+                self.$boxBody[overflow ? 'addClass' : 'removeClass']('edbox-scroll-true');
             }
         },
 
@@ -194,7 +192,7 @@
                 });
 
                 !self.responseError && $(self.target)
-                .removeClass(self.opt.prefix + '-helper-class')
+                .removeClass('edbox-helper-class')
                 .appendTo(self.$boxTemp)
                 .unwrap();
 
@@ -219,7 +217,7 @@
     $.edbox = function (options, el){
         var data = $.data(window, 'edbox');
 
-        if(options === 'close' && data){
+        if(options == 'close' && data){
             data.toggle('close');
             return;
         }
@@ -231,9 +229,11 @@
     };
     
     $.fn.edbox = function(options) {
-        this.on('click', function(e) {
-            e.preventDefault();
-            $.edbox(options, this);
+        return this.each(function(){
+            $(this).on('click', function(e) {
+                e.preventDefault();
+                $.edbox(options, this);
+            });
         });
     };
 
@@ -244,10 +244,9 @@
     url          : null,
     width        : null,
     height       : null,
-    prefix       : 'edbox',
-    parentClass  : '',
-    header       : '',
-    footer       : '',
+    addClass     : null,
+    header       : null,
+    footer       : null,
     close        : true,
     animation    : true,
     animateOpen  : 'edbox-animate-open',

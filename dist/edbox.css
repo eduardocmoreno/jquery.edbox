@@ -23,13 +23,13 @@
     top: 5px;
     right: 5px;
     transition: .35s;
-    line-height: 0.5;
+    color: #000;
     cursor: pointer; }
     .edbox .edbox-close:before {
       display: block;
       -webkit-transform: rotate(45deg);
               transform: rotate(45deg);
-      color: #fff;
+      line-height: 0.5;
       font-family: Lucida;
       font-size: 30px;
       content: '+'; }
@@ -39,11 +39,10 @@
     background: red;
     color: #fff; }
   .edbox .edbox-load {
-    width: 50px;
-    height: 50px;
-    border-radius: 5px;
+    width: 40px;
+    height: 40px;
     background: url("../images/loading.svg") center no-repeat #fff;
-    background-size: 50px; }
+    background-size: 40px; }
   .edbox .edbox-body {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -59,8 +58,7 @@
     .edbox .edbox-body .edbox-footer {
       padding: 10px;
       width: 100%;
-      background: #eee;
-      color: #333; }
+      background: #eee; }
     .edbox .edbox-body .edbox-header {
       padding-right: 40px; }
       .edbox .edbox-body .edbox-header + .edbox-close {
