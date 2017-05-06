@@ -14,47 +14,11 @@ var cleanCSS       = require('gulp-clean-css');
 //js
 var uglify         = require('gulp-uglify');
 
-//Bower
-var bower          = require('bower');
-var mainBowerFiles = require('gulp-main-bower-files');
-
 //Log de erros
 function logError (error) {
     console.log(error.toString());
     this.emit('end');
 }
-
-//Limpa os diretorios dos componentes do bower
-gulp.task('bowerClean', function(){
-    return gulp.src('docs/assets/components/*')
-    .pipe(clean());
-});
-
-//Copia os arquivos bower para a pasta public
-gulp.task('bower', ['bowerClean'], function(){
-    return bower.commands.update([], {save: true}, {})
-    .on('end', function(){
-        var jsFilter = filter('**/*.js', {restore: true});
-        var cssFilter = filter('**/*.css', {restore: true});
-
-        gulp.src('bower.json')
-        .pipe(mainBowerFiles())
-        .pipe(jsFilter)
-        .pipe(uglify())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('docs/assets/components'))
-        .pipe(jsFilter.restore)
-
-        .pipe(cssFilter)
-        .pipe(cleanCSS())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('docs/assets/components'));
-    });
-});
 
 //JS - distribution
 gulp.task('js:dist', function(){
