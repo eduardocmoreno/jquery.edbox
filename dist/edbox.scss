@@ -33,6 +33,9 @@
         padding: 30px;
         background: red;
         color: #fff;
+        .edbox-close{
+            color: #fff !important;
+        }
     }
     .edbox-load{
         width: 40px;
@@ -64,7 +67,7 @@
         }
         .edbox-content{
             overflow: auto;
-            .edbox-helper-class{
+            .edbox-target{
                 display: block !important;
             }
             & > img{

@@ -34,6 +34,7 @@ a{
 	}
 	.version{
 		margin: 20px 0;
+		font-family: 'Roboto Condensed', sans-serif;
 		font-size: 30px;
 		font-weight: 300;
 	}
@@ -171,6 +172,19 @@ a{
 			}
 		}
 	}
+}
+
+.author-data{
+	line-height: 30px;
+	font-size: 14px;
+}
+
+.footer{
+	margin-top: 50px;
+	padding: 20px 0;
+	background: darkslategray;
+	color: #fff;
+	text-align: center;
 }
 
 //examples

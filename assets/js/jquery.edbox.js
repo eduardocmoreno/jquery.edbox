@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.1.1
+* jQuery Edbox plugin v.2.0.0
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -50,7 +50,7 @@
                 if ($target.length) {
                     $target
                     .after(self.$boxTemp)
-                    .addClass('edbox-helper-class');
+                    .addClass('edbox-target');
 
                     self.insert($target);
                 } else {
@@ -81,6 +81,9 @@
         },
 
         error: function(msg){
+            self.$box.removeClass(self.opt.addClass);
+            
+            self.opt = settings;
             self.responseError = true;
 
             self.$boxError
@@ -88,7 +91,6 @@
             .prepend(self.$boxClose.on('click', self.events.click));
 
             self.$box.append(self.$boxError);
-            
             self.toggle('open');
         },
 
@@ -98,7 +100,6 @@
             .on('click', self.events.click);
 
             $('body').prepend(self.$box);
-
             $(window).on('keydown', self.events.keydown);
         },
 
@@ -117,9 +118,9 @@
                     )
                 );
 
-            $(window).on('resize', self.events.resize).resize();
-            
             self.toggle('open');
+            
+            $(window).on('resize', self.events.resize).resize();
         },        
 
         toggle: function(toggle, callback){
@@ -139,9 +140,7 @@
         load: {
             start: function(url){
                 self.loading = true;
-
                 self.$box.append(self.$boxLoad);
-
                 self.toggle('open', function(){
                     self.urlLoad = $.ajax({
                         url: url,

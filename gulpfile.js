@@ -4,6 +4,7 @@ var clean          = require('gulp-clean');
 var filter         = require('gulp-filter');
 var rename         = require('gulp-rename');
 var browserSync    = require('browser-sync').create();
+var zip            = require('gulp-zip');
 
 //css
 var autoprefixer   = require('gulp-autoprefixer');
@@ -60,7 +61,9 @@ gulp.task('bower', ['bowerClean'], function(){
 gulp.task('js:dist', function(){
     return gulp.src('assets/js/**/*.js')
     .pipe(gulp.dest('dist'))
-    .pipe(uglify())
+    .pipe(uglify({
+        preserveComments: 'all'
+    }))
     .pipe(rename({
         suffix: '.min'
     }))
@@ -115,4 +118,11 @@ gulp.task('default', function(){
 //Dist task
 gulp.task('dist', ['clean:dist'], function(){
     return gulp.start('sass:dist','js:dist','assets:dist');
+});
+
+//Zip task
+gulp.task('zip', function(){
+    gulp.src('dist/**')
+    .pipe(zip('jquery.edbox.zip'))
+    .pipe(gulp.dest('./'));
 });

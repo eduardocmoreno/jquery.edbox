@@ -38,6 +38,8 @@
     padding: 30px;
     background: red;
     color: #fff; }
+    .edbox .edbox-error .edbox-close {
+      color: #fff !important; }
   .edbox .edbox-load {
     width: 40px;
     height: 40px;
@@ -68,7 +70,7 @@
           color: #000; }
     .edbox .edbox-body .edbox-content {
       overflow: auto; }
-      .edbox .edbox-body .edbox-content .edbox-helper-class {
+      .edbox .edbox-body .edbox-content .edbox-target {
         display: block !important; }
       .edbox .edbox-body .edbox-content > img {
         display: block; }

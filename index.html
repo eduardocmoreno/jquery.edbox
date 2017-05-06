@@ -1,335 +1,318 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="jQuery edBox plugin">
-	<meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal,edbox">
-	<meta name="author" content="Eduardo Moreno">
-	
-	<title>jQuery edbox plugin</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="jQuery edBox plugin">
+    <meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal,edbox">
+    <meta name="author" content="Eduardo Moreno">
+    
+    <title>jQuery edbox plugin</title>
 
-	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
 
-	<link rel="stylesheet" href="assets/components/prism/themes/prism.css">
-	<link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
-	<link rel="stylesheet" href="assets/css/edbox.css">
-	<link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/components/prism/themes/prism.css">
+    <link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
+    <link rel="stylesheet" href="assets/css/edbox.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
-	
-	<header class="header">
-		<img src="assets/images/edbox.svg" alt="jQuery edbox plugin" class="logo">
-		<div class="description">Responsive and lightweight modal plugin.</div>
-		<div class="version">v2.1.1</div>
-		<nav class="menu">
-			<a href="" class="link" title="download zip file">download</a>
-			<a href="" class="link" title="github repository">github</a>
-		</nav>
-		<div class="packages">
-<pre><code>bower: bower install jquery.edbox --save
-npm: npm install jquery.edbox --save</code></pre>
-		</div>
-	</header>
+    
+    <header class="header">
+        <img src="assets/images/edbox.svg" alt="jQuery edbox plugin" class="logo">
+        <div class="description">Responsive and lightweight modal plugin.</div>
+        <div class="version">v2.0.0</div>
+        <nav class="menu">
+            <a href="jquery.edbox.zip" class="link" title="download zip file">download (.zip)</a>
+            <a href="https://github.com/eduardocmoreno/edbox2" class="link" title="github repository">github</a>
+        </nav>
+        <div class="packages">
+<pre><code>bower: bower install jquery.edbox --save</code></pre>
+        </div>
+    </header>
 
-	<div class="container">
-		
-		<div class="title">Examples</div>
-		
-		<!-- EXAMPLE 1 -->
-		<section class="example">
-			<div class="sub-title">Target (DOM element)</div>
-			<div class="codes">
-				<div class="code-cel">
-					<div class="code-title">html</div>
+    <div class="container">
+        
+        <div class="title">Examples</div>
+        
+        <!-- EXAMPLE 1 -->
+        <section class="example">
+            <div class="sub-title">Target (DOM element)</div>
+            <div class="codes">
+                <div class="code-cel">
+                    <div class="code-title">html</div>
 <pre><code class="language-markup">&lt;!-- DOM element --&gt;
 &lt;div id="target">My #target element&lt;/div>
 
 &lt;!-- modal link --&gt;
 &lt;a href="#" data-box-target="#target" class="link-target">Element target example&lt;/a></code></pre>
-				<div class="code-cel">
-					<div class="code-title">js</div>
+                </div>
+                <div class="code-cel">
+                    <div class="code-title">js</div>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-target').edbox();</code></pre>
-				</div>
-				</div>
-			</div>
-			<div class="target-box">
-				<div id="target">My #target element</div>
-			</div>
-			<a href="#" data-box-target="#target" class="btn btn-example link-target">Element target example</a>
-			<p class="tip"><strong>Tip:</strong> A helper class is applied to the target element when it gets inside the modal. So, if you want to show it only when it's inside the modal, set "display: none" to it and "display: block" on helper class.</p>
-		</section>
+                </div>
+            </div>
+            <div class="target-box">
+                <div id="target">My #target element</div>
+            </div>
+            <a href="#" data-box-target="#target" class="btn btn-example link-target">Element target example</a>
+            <p class="tip"><strong>Tip:</strong> A helper class ('.edbox-target') is applied to the target element when it gets inside the modal. So, if you want to show it only when it's inside the modal, set "display: none" to it and "display: block" on helper class.</p>
+        </section>
 
 
-		<!-- EXAMPLE 2 -->
-		<section class="example">
-			<div class="sub-title">HTML or Text</div>
-			<div class="codes">
-				<div class="code-cel">
-					<div class="code-title">html</div>
+        <!-- EXAMPLE 2 -->
+        <section class="example">
+            <div class="sub-title">HTML or Text</div>
+            <div class="codes">
+                <div class="code-cel">
+                    <div class="code-title">html</div>
 <pre><code class="language-markup">&lt;!-- modal link --&gt;
 &lt;a href="#" data-box-html="&lt;h1>Hello there!&lt;/h1>" class="link-html">HTML content example&lt;/a></code></pre>
-				</div>
-				<div class="code-cel">
-					<div class="code-title">js</div>
+                </div>
+                <div class="code-cel">
+                    <div class="code-title">js</div>
 <pre><code class="language-javascript">//what about use a different animation option this time?
 //this example uses "animate.css" library, take a look in "daneden.github.io/animate.css"
 //you can make your own animation too
 $('.link-html').edbox({
-	animateOpen: 'animated tada',
-	animateClose: 'animated flipOutX'
+    animateOpen: 'animated tada',
+    animateClose: 'animated flipOutX'
 });</code></pre>
-				</div>
-			</div>
-			<a href="#" data-box-html="<div class='example-html'><h1>Hello there!</h1></div>" class="btn btn-example link-html">HTML content example</a>
-		</section>
+                </div>
+            </div>
+            <a href="#" data-box-html="<div class='example-html'><h1>Hello there!</h1></div>" class="btn btn-example link-html">HTML content example</a>
+        </section>
 
-		
-		<!-- EXAMPLE 3 -->
-		<section class="example">
-			<div class="sub-title">URL load</div>
-			<div class="codes">
-				<div class="code-cel">
-					<div class="code-title">html</div>
+        
+        <!-- EXAMPLE 3 -->
+        <section class="example">
+            <div class="sub-title">URL load</div>
+            <div class="codes">
+                <div class="code-cel">
+                    <div class="code-title">html</div>
 <pre><code class="language-markup">&lt;!-- use href attribute --&gt;
-&lt;a href="test/curitiba.html" class="link-url">URL load example&lt;/a></code></pre>
-				</div>
-				<div class="code-cel">
-					<div class="code-title">js</div>
+&lt;a href="curitiba.html" class="link-url">URL load example&lt;/a></code></pre>
+                </div>
+                <div class="code-cel">
+                    <div class="code-title">js</div>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-url').edbox({
-	//add an extra class to the modal for an especific style
-	addClass: 'example-url',
-	width: 900
+    //add an extra class to the modal for an especific style
+    addClass: 'example-url',
+    width: 900
 });</code></pre>
-				</div>
-			</div>
-			<a class="btn btn-example link-url" href="test/curitiba.html">URL load example</a>
-		</section>
+                </div>
+            </div>
+            <a class="btn btn-example link-url" href="curitiba.html">URL load example</a>
+        </section>
 
-		
-		<!-- EXAMPLE 4 -->
-		<section class="example">
-			<div class="sub-title">Image load</div>
-			<div class="codes">
-				<div class="code-cel">
-					<div class="code-title">html</div>
+        
+        <!-- EXAMPLE 4 -->
+        <section class="example">
+            <div class="sub-title">Image load</div>
+            <div class="codes">
+                <div class="code-cel">
+                    <div class="code-title">html</div>
 <pre><code class="language-markup">&lt;a href="#" class="link-image">Image load example&lt;/a></code></pre>
-				</div>
-				<div class="code-cel">
-					<div class="code-title">js</div>
+                </div>
+                <div class="code-cel">
+                    <div class="code-title">js</div>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-image').edbox({
-	image: 'curitiba-brazil.jpg',
-	header: 'Curitiba - Paraná - Brazil'
+    image: 'curitiba-brazil.jpg',
+    header: 'Curitiba - Parana - Brazil'
 });</code></pre>
-				</div>
-			</div>
-			<a class="btn btn-example link-image" href="#" data-box-image="assets/images/curitiba-brazil.jpg">Image load example</a>
-		</section>	
-		
-		<div class="title">Options</div>
-		
-		<div class="table-wrapper">
-			<table class="table">
-				<thead>
-					<tr>
-						<th>Option</th>
-						<th>Type</th>
-						<th>Default</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td>target</td>
-						<td>string</td>
-						<td>null</td>
-						<td>DOM element</td>
-					</tr>
-					<tr>
-						<td>html</td>
-						<td>string</td>
-						<td>null</td>
-						<td>html and/or text</td>
-					</tr>
-					<tr>
-						<td>image</td>
-						<td>string</td>
-						<td>null</td>
-						<td>image path</td>
-					</tr>
-					<tr>
-						<td>url</td>
-						<td>string</td>
-						<td>null</td>
-						<td>url path (files, pages, etc...)</td>
-					</tr>
-					<tr>
-						<td>width</td>
-						<td>number</td>
-						<td>null</td>
-						<td>Set a fixed width value to the modal</td>
-					</tr>
-					<tr>
-						<td>height</td>
-						<td>number</td>
-						<td>null</td>
-						<td>Set a fixed height value to the modal</td>
-					</tr>
-					<tr>
-						<td>addClass</td>
-						<td>string</td>
-						<td>null</td>
-						<td>Adds a especific class to the modal</td>
-					</tr>
-					<tr>
-						<td>header</td>
-						<td>string</td>
-						<td>null</td>
-						<td>Optional header tag - accepts html and/or text</td>
-					</tr>
-					<tr>
-						<td>footer</td>
-						<td>string</td>
-						<td>null</td>
-						<td>Optional footer tag - accepts html and/or text</td>
-					</tr>
-					<tr>
-						<td>close</td>
-						<td>boolean</td>
-						<td>true</td>
-						<td>Makes the modal closable or not.<br>events: keydown (esc) / click ('x' icon or outside the modal)</td>
-					</tr>
-					<tr>
-						<td>animation</td>
-						<td>boolean</td>
-						<td>true</td>
-						<td>Makes the modal animable or not.</td>
-					</tr>
-					<tr>
-						<td>animateOpen</td>
-						<td>string</td>
-						<td>'edbox-animate-open'</td>
-						<td>CSS animation class on open</td>
-					</tr>
-					<tr>
-						<td>animateClose</td>
-						<td>string</td>
-						<td>'edbox-animate-close'</td>
-						<td>CSS animation class on close</td>
-					</tr>
-					<tr>
-						<td>beforeOpen</td>
-						<td>function</td>
-						<td>function() {}</td>
-						<td>Function callback before open the modal</td>
-					</tr>
-					<tr>
-						<td>beforeClose</td>
-						<td>function</td>
-						<td>function() {}</td>
-						<td>Function callback before close the modal</td>
-					</tr>
-					<tr>
-						<td>afterOpen</td>
-						<td>function</td>
-						<td>function() {}</td>
-						<td>Function callback after open the modal</td>
-					</tr>
-					<tr>
-						<td>afterOpen</td>
-						<td>function</td>
-						<td>function() {}</td>
-						<td>Function callback after close the modal</td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
+                </div>
+            </div>
+            <a class="btn btn-example link-image" href="#" data-box-image="assets/images/curitiba-brazil.jpg">Image load example</a>
+        </section>  
+        
+        <div class="title">Options</div>
+        
+        <div class="table-wrapper">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Option</th>
+                        <th>Type</th>
+                        <th>Default</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>target</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>DOM element</td>
+                    </tr>
+                    <tr>
+                        <td>html</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>html and/or text</td>
+                    </tr>
+                    <tr>
+                        <td>image</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>image path</td>
+                    </tr>
+                    <tr>
+                        <td>url</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>url path (files, pages, etc...)</td>
+                    </tr>
+                    <tr>
+                        <td>width</td>
+                        <td>number</td>
+                        <td>null</td>
+                        <td>Set a fixed width value to the modal</td>
+                    </tr>
+                    <tr>
+                        <td>height</td>
+                        <td>number</td>
+                        <td>null</td>
+                        <td>Set a fixed height value to the modal</td>
+                    </tr>
+                    <tr>
+                        <td>addClass</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Adds a especific class to the modal</td>
+                    </tr>
+                    <tr>
+                        <td>header</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Optional header tag - accepts html and/or text</td>
+                    </tr>
+                    <tr>
+                        <td>footer</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Optional footer tag - accepts html and/or text</td>
+                    </tr>
+                    <tr>
+                        <td>close</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                        <td>Makes the modal closable or not.<br>events: keydown (esc) / click ('x' icon or outside the modal)</td>
+                    </tr>
+                    <tr>
+                        <td>animation</td>
+                        <td>boolean</td>
+                        <td>true</td>
+                        <td>Makes the modal animable or not.</td>
+                    </tr>
+                    <tr>
+                        <td>animateOpen</td>
+                        <td>string</td>
+                        <td>'edbox-animate-open'</td>
+                        <td>CSS animation class on open</td>
+                    </tr>
+                    <tr>
+                        <td>animateClose</td>
+                        <td>string</td>
+                        <td>'edbox-animate-close'</td>
+                        <td>CSS animation class on close</td>
+                    </tr>
+                    <tr>
+                        <td>beforeOpen</td>
+                        <td>function</td>
+                        <td>function() {}</td>
+                        <td>Function callback before open the modal</td>
+                    </tr>
+                    <tr>
+                        <td>beforeClose</td>
+                        <td>function</td>
+                        <td>function() {}</td>
+                        <td>Function callback before close the modal</td>
+                    </tr>
+                    <tr>
+                        <td>afterOpen</td>
+                        <td>function</td>
+                        <td>function() {}</td>
+                        <td>Function callback after open the modal</td>
+                    </tr>
+                    <tr>
+                        <td>afterOpen</td>
+                        <td>function</td>
+                        <td>function() {}</td>
+                        <td>Function callback after close the modal</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-		<div class="title">Methods</div>
+        <div class="title">Methods</div>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
-$('.myModalLink').edbox({ ...options... });
+$('.myModalLink').edbox({ options });
 
 //Init without assigning any element
-$.edbox({ ...options... });
+$.edbox({ options });
 
 //Make custom settings as defaults
-$.edboxSettings({ ...options... });
+$.edboxSettings({ options });
 
 //Close event
 $.edbox('close');
 </code></pre>
 
-		<div class="title">Changelog</div>
+        <div class="title">Changelog</div>
 
-		<strong>v2.0.0</strong>
-		<ul>
-			<li>New features, css animations, better cutomization and easy to use.</li>
-		</ul>
+        <strong>v2.0.0</strong>
+        <ul>
+            <li>New features, css animations, css cutomization and easy to use.</li>
+        </ul>
 
-		<strong>v2.1.1</strong>
-		<ul>
-			<li>Removed prefix option</li>
-			<li>Changed parentClass option name to addClass</li>
-			<li>Fixed event functions bug</li>
-			<li>Some css style modifications</li>
-		</ul>
+        <div class="title">Author</div>
 
-		<div class="title">Author</div>
+        <p>
+            <strong>Eduardo Moreno</strong><br>
+            <small>Webdesiger | Front-end developer</small>
+        </p>
+        
+        <ul class="author-data">
+            <li>
+                Personal page: <a href="http://edumoreno.com.br" class="hyperlink">http://edumoreno.com.br</a>
+            </li>
+            <li>
+                Github: <a href="https://github.com/eduardocmoreno" class="hyperlink" target="_blank">github.com/eduardocmoreno</a>
+            </li>
+            <li>
+                Facebook: <a href="https://www.facebook.com/eduardomoreno81" class="hyperlink" target="_blank">facebook.com/eduardomoreno81</a>
+            </li>
+            <li>
+                Linkedin: <a href="http://lnkd.in/59e_uq" class="hyperlink" target="_blank">lnkd.in/59e_uq</a>
+            </li>
+        </ul>
 
-		<div>
-			<p><b>Eduardo Moreno</b><br>Front-end developer and Webdesiger director</p>
-			<p>
-				<img src="assets/images/icon-portfolio.png" alt="Porftolio" class="icon"/>
-				<a href="http://edumoreno.com.br" class="link">
-					http://edumoreno.com.br
-				</a>
-			</p>
-			<p>
-				<img src="assets/images/icon-github.png" alt="Github" class="icon"/>
-				<a href="https://github.com/eduardocmoreno" class="link" target="_blank">
-					github.com/eduardocmoreno
-				</a>
-			</p>
-			<p>
-				<img src="assets/images/icon-facebook.png" alt="Facebook" class="icon"/>
-				<a href="https://www.facebook.com/eduardomoreno81" class="link" target="_blank">
-					facebook.com/eduardomoreno81
-				</a>
-			</p>
-			<p>
-				<img src="assets/images/icon-linkedin.png" alt="Linkedin" class="icon"/>
-				<a href="http://lnkd.in/59e_uq" class="link" target="_blank">
-					lnkd.in/59e_uq
-				</a>
-			</p>
-		</div>
+    </div>
 
-		<p class="copyright">Copyright © 2017 - Eduardo Moreno</p>
+    <footer class="footer">Copyright © 2017 - Eduardo Moreno</footer>
 
-	</div>
-
-	<script src="assets/components/jquery/dist/jquery.min.js"></script>
-	<script src="assets/components/prism/prism.min.js"></script>
-	<script src="assets/js/jquery.edbox.js"></script>
-	<script>
-		$(document).ready(function() {
-			$('.link-target').edbox();
-			$('.link-html').edbox({
-				animateOpen: 'animated tada',
-				animateClose: 'animated flipOutX'
-			});
-			$('.link-url').edbox({
-				addClass: 'example-url',
-				width: 900
-			});
-			$('.link-image').edbox({
-				addClass: 'example-image',
-				header: 'Curitiba - Parana - Brazil'
-			});
-		});
-	</script>
+    <script src="assets/components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/components/prism/prism.min.js"></script>
+    <script src="assets/js/jquery.edbox.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.link-target').edbox();
+            $('.link-html').edbox({
+                animateOpen: 'animated tada',
+                animateClose: 'animated flipOutX'
+            });
+            $('.link-url').edbox({
+                addClass: 'example-url',
+                width: 900
+            });
+            $('.link-image').edbox({
+                addClass: 'example-image',
+                header: 'Curitiba - Parana - Brazil'
+            });
+        });
+    </script>
 </body>
 </html>
