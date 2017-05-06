@@ -27,7 +27,7 @@ function logError (error) {
 
 //Limpa os diretorios dos componentes do bower
 gulp.task('bowerClean', function(){
-    return gulp.src('assets/components/*')
+    return gulp.src('docs/assets/components/*')
     .pipe(clean());
 });
 
@@ -45,7 +45,7 @@ gulp.task('bower', ['bowerClean'], function(){
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('assets/components'))
+        .pipe(gulp.dest('docs/assets/components'))
         .pipe(jsFilter.restore)
 
         .pipe(cssFilter)
@@ -53,13 +53,13 @@ gulp.task('bower', ['bowerClean'], function(){
         .pipe(rename({
             suffix: '.min'
         }))
-        .pipe(gulp.dest('assets/components'));
+        .pipe(gulp.dest('docs/assets/components'));
     });
 });
 
 //JS - distribution
 gulp.task('js:dist', function(){
-    return gulp.src('assets/js/**/*.js')
+    return gulp.src('docs/assets/js/**/*.js')
     .pipe(gulp.dest('dist'))
     .pipe(uglify({
         preserveComments: 'all'
@@ -72,17 +72,17 @@ gulp.task('js:dist', function(){
 
 //SASS-CSS - development
 gulp.task('sass:dev', function() {
-    return gulp.src('assets/scss/**/*.scss')
+    return gulp.src('docs/assets/scss/**/*.scss')
     .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(sourcemaps.write())
-    .pipe(gulp.dest('assets/css'))
+    .pipe(gulp.dest('docs/assets/css'))
     .pipe(browserSync.stream());
 });
 
 //SASS-CSS - distribution
 gulp.task('sass:dist', function() {
-    return gulp.src('assets/scss/edbox.scss')
+    return gulp.src('docs/assets/scss/edbox.scss')
     .pipe(gulp.dest('dist'))
     .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
@@ -96,7 +96,7 @@ gulp.task('sass:dist', function() {
 
 //Assets - distribution
 gulp.task('assets:dist', function(){
-    return gulp.src('assets/images/loading.svg')
+    return gulp.src('docs/assets/images/loading.svg')
     .pipe(gulp.dest('dist'));
 });
 
@@ -109,10 +109,10 @@ gulp.task('clean:dist', function(){
 //Default task
 gulp.task('default', function(){
     browserSync.init({
-        server: "./"
+        server: "docs"
     });
-    gulp.watch('assets/scss/**/*.scss', ['sass:dev']);
-    gulp.watch(['**/*.html','assets/js/**/*.js']).on('change', browserSync.reload);
+    gulp.watch('docs/assets/scss/**/*.scss', ['sass:dev']);
+    gulp.watch(['**/*.html','docs/assets/js/**/*.js']).on('change', browserSync.reload);
 });
 
 //Dist task
@@ -123,6 +123,6 @@ gulp.task('dist', ['clean:dist'], function(){
 //Zip task
 gulp.task('zip', function(){
     gulp.src('dist/**')
-    .pipe(zip('jquery.edbox.zip'))
+    .pipe(zip('docs/jquery.edbox.zip'))
     .pipe(gulp.dest('./'));
 });

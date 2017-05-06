@@ -12,10 +12,8 @@
   ],
   "ignore": [
     "**/.*",
-    "assets",
+    "docs",
     "gulpfile.js",
-    "index.html",
-    "jquery.edbox.zip",
     "LICENSE",
     "package.json",
     "README.md"

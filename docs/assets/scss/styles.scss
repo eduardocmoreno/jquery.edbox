@@ -8,10 +8,16 @@ body{
 	font-size: 16px;
 	font-weight: 300;
 }
+
 a{
 	display: inline-block;
 	text-decoration: none;
 	transition: .35s;
+}
+
+ul{
+	line-height: 30px;
+	font-size: 14px;
 }
 
 .header{
@@ -62,8 +68,8 @@ a{
 .container{
 	margin-right: auto;
 	margin-left: auto;
-	padding-right: 10px;
-	padding-left: 10px;
+	padding-right: 20px;
+	padding-left: 20px;
 	max-width: 1170px;
 }
 
@@ -174,10 +180,6 @@ a{
 	}
 }
 
-.author-data{
-	line-height: 30px;
-	font-size: 14px;
-}
 
 .footer{
 	margin-top: 50px;
