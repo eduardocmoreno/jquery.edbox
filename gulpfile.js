@@ -9,7 +9,6 @@ var zip            = require('gulp-zip');
 //css
 var autoprefixer   = require('gulp-autoprefixer');
 var sass           = require('gulp-sass');
-var sourcemaps     = require('gulp-sourcemaps')
 var cleanCSS       = require('gulp-clean-css');
 
 //js
@@ -73,9 +72,7 @@ gulp.task('js:dist', function(){
 //SASS-CSS - development
 gulp.task('sass:dev', function() {
     return gulp.src('docs/assets/scss/**/*.scss')
-    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('docs/assets/css'))
     .pipe(browserSync.stream());
 });
