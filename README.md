@@ -1,4 +1,4 @@
 # edbox2
 Modal jQuery Plugin
 
-Under dev
+Demos and Docs: https://eduardocmoreno.github.io/edbox2/
