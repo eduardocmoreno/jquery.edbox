@@ -1,5 +1,6 @@
 {
   "name": "jquery.edbox",
+  "version": "2.1.0",
   "main": "dist/jquery.edbox.js",
   "keywords": [
     "jquery",
@@ -20,6 +21,5 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
     "gulp-zip": "^4.0.0"
-  },
-  "version": "2.1.0"
+  }
 }
