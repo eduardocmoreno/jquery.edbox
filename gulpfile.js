@@ -1,7 +1,6 @@
 //global
 var gulp           = require('gulp');
 var clean          = require('gulp-clean');
-var filter         = require('gulp-filter');
 var rename         = require('gulp-rename');
 var browserSync    = require('browser-sync').create();
 var zip            = require('gulp-zip');

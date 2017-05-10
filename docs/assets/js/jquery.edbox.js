@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.0.0
+* jQuery Edbox plugin v.2.1.0
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -11,10 +11,21 @@
 
         self.opt = $.extend({}, settings, options);
 
-        self.target = self.opt.target || $(el).attr('data-box-target');
-        self.html   = self.opt.html   || $(el).attr('data-box-html');
-        self.image  = self.opt.image  || $(el).attr('data-box-image');
-        self.url    = self.opt.url    || $(el).attr('href') || $(el).attr('data-box-url');
+        self.$el = $(el);
+
+        self.attr = {
+            target: self.$el.attr('data-box-target'),
+            html:   self.$el.attr('data-box-html'),
+            image:  self.$el.attr('data-box-image'),
+            url:    self.$el.attr('data-box-url'),
+            header: self.$el.attr('data-box-header'),
+            footer: self.$el.attr('data-box-footer')
+        }
+
+        self.target = self.opt.target || self.attr.target;
+        self.html   = self.opt.html   || self.attr.html;
+        self.image  = self.opt.image  || self.attr.image;
+        self.url    = self.opt.url    || self.$el.attr('href') || self.attr.url;
 
         self.$box        = $('<div class="edbox"/>');
         self.$boxError   = $('<div class="edbox-error"/>');
@@ -111,10 +122,10 @@
                     height: self.opt.height
                 })
                 .append(
-                    self.opt.header && self.$boxHeader.html(self.opt.header),
+                    (self.attr.header || self.opt.header) && self.$boxHeader.html(self.attr.header || self.opt.header),
                     self.opt.close && self.$boxClose.on('click', self.events.click),
                     self.$boxContent.append(content),
-                    self.opt.footer && self.$boxFooter.html(self.opt.footer)
+                    (self.attr.footer || self.opt.footer) && self.$boxFooter.html(self.attr.footer || self.opt.footer)
                     )
                 );
 

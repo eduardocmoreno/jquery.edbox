@@ -132,7 +132,8 @@ ul {
     .table-wrapper .table td {
       padding: 10px; }
     .table-wrapper .table td:first-child {
-      font-weight: 700; }
+      font-weight: 700;
+      width: 120px; }
     .table-wrapper .table thead {
       background: orange;
       color: #fff; }

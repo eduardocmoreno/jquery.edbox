@@ -49,6 +49,16 @@
         position: relative;
         max-width: calc(100% - 60px);
         max-height: calc(100% - 60px);
+        &.edbox-scroll-true{
+            .edbox-close{
+                right: 25px;
+            }
+            @-moz-document  url-prefix(){
+                .edbox-content{
+                    padding-right: 17px;
+                }
+            }
+        }
         .edbox-header,
         .edbox-footer{
             padding: 10px;
@@ -59,10 +69,8 @@
             padding-right: 40px;
             & + .edbox-close{
                 top: 10px;
-                right: 10px !important;
-                &:before{
-                    color: #000;
-                }
+                right: 10px;
+                color: #000;
             }
         }
         .edbox-content{
@@ -72,16 +80,6 @@
             }
             & > img{
                 display: block;
-            }
-        }
-        &.edbox-scroll-true{
-            .edbox-close{
-                right: 25px;
-            }
-            @-moz-document  url-prefix(){
-                .edbox-content{
-                    padding-right: 17px;
-                }
             }
         }
     }    

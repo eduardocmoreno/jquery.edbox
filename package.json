@@ -1,26 +1,12 @@
 {
   "name": "jquery.edbox",
-  "version": "2.0.0",
-  "description": "edbox jquery plugin",
   "main": "dist/jquery.edbox.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/eduardocmoreno/jquery.edbox2.git"
-  },
   "keywords": [
     "jquery",
     "modal",
     "plugin"
   ],
-  "author": "Eduardo Moreno",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/eduardocmoreno/jquery.edbox2/issues"
-  },
-  "homepage": "https://eduardocmoreno.github.io/jquery.edbox2/",
+  "license": "MIT",
   "dependencies": {
     "jquery": ">=3.0.0"
   },
@@ -30,7 +16,6 @@
     "gulp-autoprefixer": "^3.1.1",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.0.4",
-    "gulp-filter": "^5.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^2.1.2",
