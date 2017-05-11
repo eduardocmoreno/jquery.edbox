@@ -184,29 +184,29 @@ ul {
   text-shadow: -2px 2px 0 #fff, -4px 4px 0 rgba(255, 255, 255, 0.5);
   overflow: hidden; }
 
-.example-url {
+.edbox.example-url {
   background: rgba(47, 79, 79, 0.5); }
-  .example-url .edbox-body {
+  .edbox.example-url .edbox-body {
     box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.1); }
-  .example-url .edbox-close {
+  .edbox.example-url .edbox-close {
     color: orange !important; }
-  .example-url .url-content {
+  .edbox.example-url .url-content {
     padding: 15px;
     background: #fff;
     overflow: hidden; }
-    .example-url .url-content h2 {
+    .edbox.example-url .url-content h2 {
       margin-top: 0; }
-    .example-url .url-content .photo {
+    .edbox.example-url .url-content .photo {
       float: left; }
-      .example-url .url-content .photo img {
+      .edbox.example-url .url-content .photo img {
         width: 300px; }
-      .example-url .url-content .photo figcaption {
+      .edbox.example-url .url-content .photo figcaption {
         font-size: 14px;
         text-align: center; }
 
-.example-image .edbox-footer {
+.edbox.example-image .edbox-footer {
   color: darkslategray;
   text-align: center; }
 
-.example-image img {
+.edbox.example-image img {
   width: 800px; }

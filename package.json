@@ -1,11 +1,15 @@
 {
   "name": "jquery.edbox",
-  "version": "2.1.0",
+  "version": "2.2.1",
   "main": "dist/jquery.edbox.js",
   "keywords": [
     "jquery",
     "modal",
-    "plugin"
+    "popup",
+    "box",
+    "plugin",
+    "alerts",
+    "alert"
   ],
   "license": "MIT",
   "dependencies": {

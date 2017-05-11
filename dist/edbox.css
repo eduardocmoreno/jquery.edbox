@@ -78,7 +78,8 @@
     -webkit-box-align: start;
         -ms-flex-align: start;
             align-items: flex-start;
-    padding-top: 30px; }
+    padding-top: 30px;
+    font: 16px Arial, sans-serif; }
     .edbox.edbox-alert .edbox-alert-container {
       display: -webkit-box;
       display: -ms-flexbox;

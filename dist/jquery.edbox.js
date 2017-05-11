@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.2.0
+* jQuery Edbox plugin v.2.2.1
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -22,10 +22,13 @@
             footer: self.$el.attr('data-box-footer')
         }
 
+        var href = self.$el.attr('href');
+        href = (/^(#.*)/).test(href) ? null : href;
+
         self.target = self.opt.target || self.attr.target;
         self.html   = self.opt.html   || self.attr.html;
         self.image  = self.opt.image  || self.attr.image;
-        self.url    = self.opt.url    || self.$el.attr('href') || self.attr.url;
+        self.url    = self.opt.url    || href || self.attr.url;
 
         self.$box        = $('<div class="edbox"/>');
         self.$boxError   = $('<div class="edbox-error"/>');
@@ -59,7 +62,7 @@
             self.opt.danger && 'danger';
 
             if(!content && !alert){
-                self.alert('danger','Undefined');
+                self.error('Undefined');
                 return;
             }
 
@@ -75,7 +78,7 @@
 
                     self.insert($target);
                 } else {
-                    self.alert('danger','Unable to find element: "' + self.target + '"');
+                    self.error('Unable to find element: "' + self.target + '"');
                 }
 
                 return;
@@ -116,6 +119,15 @@
             $(window).on('keydown', self.events.keydown);
         },
 
+        error: function(msg){
+            self.$box.removeClass(self.opt.addClass);
+            
+            self.opt = settings;
+            self.responseError = true;
+
+            self.alert('danger', msg);
+        },
+
         alert: function(type, msg){
             self.$box
             .addClass('edbox-alert edbox-alert-' + type)
@@ -129,8 +141,8 @@
         },
 
         insert: function(content){
-            var header = self.attr.header || self.opt.header;
-            var footer = self.attr.footer || self.opt.footer;
+            var header = self.opt.header || self.attr.header;
+            var footer = self.opt.footer || self.attr.footer;
 
             self.opt.close && header && self.$boxHeader.append(self.$boxClose);
 
@@ -141,10 +153,10 @@
                     height: self.opt.height
                 })
                 .append(
-                    header && self.$boxHeader.append(self.attr.header || self.opt.header),
+                    header && self.$boxHeader.append(header),
                     self.opt.close && !header && self.$boxClose,
                     self.$boxContent.append(content),
-                    footer && self.$boxFooter.append(self.attr.footer || self.opt.footer)
+                    footer && self.$boxFooter.append(footer)
                     )
                 );
 
@@ -177,7 +189,6 @@
                         cache: (self.image ? false : true)
                     })
                     .fail(function(response){
-                        self.responseError = true;
                         self.load.complete('error', (self.image || self.url) + ' ' + response.statusText.toLowerCase());
                     })
                     .done(function(data){
@@ -190,7 +201,7 @@
                 self.toggle('close', function(){
                     self.loading = false;
                     self.$boxLoad.remove();
-                    method == 'error' ? self.alert('danger', response) : self[method](content);
+                    self[method](response || content);
                 });
             }
         },

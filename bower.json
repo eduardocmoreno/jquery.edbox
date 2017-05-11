@@ -1,6 +1,6 @@
 {
   "name": "jquery.edbox",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "main": [
     "dist/jquery.edbox.js",
     "dist/edbox.css"
@@ -18,7 +18,9 @@
     "modal",
     "popup",
     "box",
-    "plugin"
+    "plugin",
+    "alerts",
+    "alert"
   ],
   "dependencies": {
     "jquery": "^3.0.0"

@@ -240,40 +240,42 @@ ul{
 	overflow: hidden;
 }
 
-.example-url{
-	background: rgba(darkslategray, .5);
-	.edbox-body{
-		box-shadow: -5px 5px 0 rgba(#000, .1);
-	}
-	.edbox-close{
-		color: orange !important;
-	}
-	.url-content{
-		padding: 15px;
-		background: #fff;
-		overflow: hidden;
-		h2{
-			margin-top: 0;
+.edbox{
+	&.example-url{
+		background: rgba(darkslategray, .5);
+		.edbox-body{
+			box-shadow: -5px 5px 0 rgba(#000, .1);
 		}
-		.photo{
-			float: left;
-			img{
-				width: 300px;
+		.edbox-close{
+			color: orange !important;
+		}
+		.url-content{
+			padding: 15px;
+			background: #fff;
+			overflow: hidden;
+			h2{
+				margin-top: 0;
 			}
-			figcaption{
-				font-size: 14px;
-				text-align: center;
+			.photo{
+				float: left;
+				img{
+					width: 300px;
+				}
+				figcaption{
+					font-size: 14px;
+					text-align: center;
+				}
 			}
 		}
 	}
-}
 
-.example-image{
-	.edbox-footer{
-		color: darkslategray;
-		text-align: center;
-	}
-	img{
-		width: 800px;
+	&.example-image{
+		.edbox-footer{
+			color: darkslategray;
+			text-align: center;
+		}
+		img{
+			width: 800px;
+		}
 	}
 }

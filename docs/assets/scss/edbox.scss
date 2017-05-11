@@ -81,11 +81,12 @@
     &.edbox-alert{
         align-items: flex-start;
         padding-top: 30px;
+        font: 16px Arial, sans-serif;
         .edbox-alert-container{
             display: flex;
             padding: 15px;
             border: 1px solid;
-            color: #fff;            
+            color: #fff;
             .edbox-close{
                 margin-left: 15px;
                 color: #fff;
