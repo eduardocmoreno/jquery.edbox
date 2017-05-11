@@ -2,3 +2,5 @@
 docs
 gulpfile.js
 bower.json
+bower_components
+node_modules
