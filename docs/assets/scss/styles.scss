@@ -138,11 +138,36 @@ ul{
 	font-size: 18px;
 	font-weight: 300;
 	text-shadow: 1px 1px 1px rgba(#000, .3);
+	cursor: pointer;
 	&.btn-example{
 		margin-top: 10px;
 	}
 	&:hover{
 		background: darkslategray;
+	}
+	&.btn-success{
+		background: mediumseagreen;
+		&:hover{
+			background: darken(mediumseagreen, 10%);
+		}
+	}
+	&.btn-info{
+		background: steelblue;
+		&:hover{
+			background: darken(steelblue, 10%);
+		}
+	}
+	&.btn-warning{
+		background: orange;
+		&:hover{
+			background: darken(orange, 10%);
+		}
+	}
+	&.btn-danger{
+		background: tomato;
+		&:hover{
+			background: darken(tomato, 10%);
+		}
 	}
 }
 
@@ -221,7 +246,7 @@ ul{
 		box-shadow: -5px 5px 0 rgba(#000, .1);
 	}
 	.edbox-close{
-		color: orange;
+		color: orange !important;
 	}
 	.url-content{
 		padding: 15px;

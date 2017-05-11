@@ -110,11 +110,28 @@ ul {
   font-family: 'Roboto Condensed', sans-serif;
   font-size: 18px;
   font-weight: 300;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3); }
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  cursor: pointer; }
   .btn.btn-example {
     margin-top: 10px; }
   .btn:hover {
     background: darkslategray; }
+  .btn.btn-success {
+    background: mediumseagreen; }
+    .btn.btn-success:hover {
+      background: #2f8d59; }
+  .btn.btn-info {
+    background: steelblue; }
+    .btn.btn-info:hover {
+      background: #38678f; }
+  .btn.btn-warning {
+    background: orange; }
+    .btn.btn-warning:hover {
+      background: #cc8400; }
+  .btn.btn-danger {
+    background: tomato; }
+    .btn.btn-danger:hover {
+      background: #ff3814; }
 
 .tip {
   font-family: Arial, sans-serif;
@@ -172,7 +189,7 @@ ul {
   .example-url .edbox-body {
     box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.1); }
   .example-url .edbox-close {
-    color: orange; }
+    color: orange !important; }
   .example-url .url-content {
     padding: 15px;
     background: #fff;

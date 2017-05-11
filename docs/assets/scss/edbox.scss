@@ -4,20 +4,18 @@
 .edbox{
     display: flex;
     justify-content: center;
-    align-items: center;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(#000,.5);
     z-index: 100;
+    &:not(.edbox-alert){
+        align-items: center;
+        background: rgba(#000,.5);
+    }
     .edbox-close{
-        position: absolute;
-        top: 5px;
-        right: 5px;
         transition: .35s;
-        color: #000;
         cursor: pointer;
         &:before{
             display: block;
@@ -26,15 +24,6 @@
             font-family: Lucida;
             font-size: 30px;
             content: '+';
-        }
-    }
-    .edbox-error{
-        position: relative;
-        padding: 30px;
-        background: red;
-        color: #fff;
-        .edbox-close{
-            color: #fff !important;
         }
     }
     .edbox-load{
@@ -49,8 +38,14 @@
         position: relative;
         max-width: calc(100% - 60px);
         max-height: calc(100% - 60px);
+        .edbox-close{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: #000;
+        }
         &.edbox-scroll-true{
-            .edbox-close{
+            & > .edbox-close{
                 right: 25px;
             }
             @-moz-document  url-prefix(){
@@ -67,7 +62,7 @@
         }
         .edbox-header{
             padding-right: 40px;
-            & + .edbox-close{
+            .edbox-close{
                 top: 10px;
                 right: 10px;
                 color: #000;
@@ -83,6 +78,44 @@
             }
         }
     }    
+    &.edbox-alert{
+        align-items: flex-start;
+        padding-top: 30px;
+        .edbox-alert-container{
+            display: flex;
+            padding: 15px;
+            border: 1px solid;
+            color: #fff;            
+            .edbox-close{
+                margin-left: 15px;
+                color: #fff;
+            }
+        }
+        &.edbox-alert-success{
+            .edbox-alert-container{
+                border-color: darken(mediumseagreen, 10%);
+                background: mediumseagreen;
+            }
+        }
+        &.edbox-alert-info{
+            .edbox-alert-container{
+                border-color: darken(steelblue, 10%);
+                background: steelblue;
+            }
+        }
+        &.edbox-alert-warning{
+            .edbox-alert-container{
+                border-color: darken(orange, 10%);
+                background: orange;
+            }
+        }
+        &.edbox-alert-danger{
+            .edbox-alert-container{
+                border-color: darken(tomato, 10%);
+                background: tomato;
+            }
+        }
+    }
     .edbox-animate-open{
         animation: edbox-animate-open .35s ease-in-out forwards;
     }

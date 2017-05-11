@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.1.0
+* jQuery Edbox plugin v.2.2.0
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -46,10 +46,20 @@
         init: function(){
             self.base();
 
-            var content = self.target || self.html || self.image || self.url;
+            var content = 
+            self.target ||
+            self.html ||
+            self.image ||
+            self.url;
 
-            if(!content){
-                self.error('undefined content');
+            var alert = 
+            self.opt.success && 'success' ||
+            self.opt.info && 'info' ||
+            self.opt.warning && 'warning' ||
+            self.opt.danger && 'danger';
+
+            if(!content && !alert){
+                self.alert('danger','Undefined');
                 return;
             }
 
@@ -65,7 +75,7 @@
 
                     self.insert($target);
                 } else {
-                    self.error('Unable to find element: "' + self.target + '"');
+                    self.alert('danger','Unable to find element: "' + self.target + '"');
                 }
 
                 return;
@@ -89,32 +99,41 @@
                 self.load.start(self.url);
                 return;
             }
-        },
 
-        error: function(msg){
-            self.$box.removeClass(self.opt.addClass);
-            
-            self.opt = settings;
-            self.responseError = true;
-
-            self.$boxError
-            .text('ERROR: ' + msg)
-            .prepend(self.$boxClose.on('click', self.events.click));
-
-            self.$box.append(self.$boxError);
-            self.toggle('open');
+            if(alert){
+                self.alert(alert, self.opt[alert]);
+                return;
+            }
         },
 
         base: function(){
             self.$box
             .addClass(self.opt.addClass)
+            .add(self.opt.close && self.$boxClose)
             .on('click', self.events.click);
 
             $('body').prepend(self.$box);
             $(window).on('keydown', self.events.keydown);
         },
 
+        alert: function(type, msg){
+            self.$box
+            .addClass('edbox-alert edbox-alert-' + type)
+            .append(
+                $('<div/>')
+                .addClass('edbox-alert-container')
+                .append('<div>' + msg + '</div>', self.opt.close && self.$boxClose)
+                );
+
+            self.toggle('open');
+        },
+
         insert: function(content){
+            var header = self.attr.header || self.opt.header;
+            var footer = self.attr.footer || self.opt.footer;
+
+            self.opt.close && header && self.$boxHeader.append(self.$boxClose);
+
             self.$box.append(
                 self.$boxBody
                 .css({
@@ -122,10 +141,10 @@
                     height: self.opt.height
                 })
                 .append(
-                    (self.attr.header || self.opt.header) && self.$boxHeader.html(self.attr.header || self.opt.header),
-                    self.opt.close && self.$boxClose.on('click', self.events.click),
+                    header && self.$boxHeader.append(self.attr.header || self.opt.header),
+                    self.opt.close && !header && self.$boxClose,
                     self.$boxContent.append(content),
-                    (self.attr.footer || self.opt.footer) && self.$boxFooter.html(self.attr.footer || self.opt.footer)
+                    footer && self.$boxFooter.append(self.attr.footer || self.opt.footer)
                     )
                 );
 
@@ -138,7 +157,7 @@
             toggle == 'close' && !self.loading && !self.responseError && self.opt.beforeClose();
 
             if(self.opt.animation){
-                (self.loading ? self.$boxLoad : self.responseError ? self.$boxError : self.$boxBody)
+                self.$box.children()
                 .addClass(toggle == 'open' ? self.opt.animateOpen : self.opt.animateClose)
                 .one(self.animateEvents, function() {
                     typeof callback == 'function' ? callback() : self.callback[toggle]();
@@ -158,7 +177,8 @@
                         cache: (self.image ? false : true)
                     })
                     .fail(function(response){
-                        self.load.complete('error', (self.image || self.url) + ' ' + response.statusText.toLowerCase() + '!');
+                        self.responseError = true;
+                        self.load.complete('error', (self.image || self.url) + ' ' + response.statusText.toLowerCase());
                     })
                     .done(function(data){
                         self.load.complete('insert', null, self.imageObj || data);
@@ -170,7 +190,7 @@
                 self.toggle('close', function(){
                     self.loading = false;
                     self.$boxLoad.remove();
-                    self[method](response || content);
+                    method == 'error' ? self.alert('danger', response) : self[method](content);
                 });
             }
         },
@@ -207,16 +227,13 @@
                 .appendTo(self.$boxTemp)
                 .unwrap();
 
-                if(self.loading){
-                    self.image && self.imageObj.attr('src', null);
-                    self.urlLoad && self.urlLoad.abort();
-                } else if(!self.responseError) {
-                    self.opt.afterClose();
-                }
-
+                self.loading && self.urlLoad.abort();
+                
                 self.$box.remove();
-
+                
                 $.removeData(window, 'edbox');
+                
+                !self.loading && !self.responseError && self.opt.afterClose();
             }
         }
     };
@@ -253,17 +270,27 @@
     html         : null,
     image        : null,
     url          : null,
+    
+    success      : null,
+    info         : null,
+    warning      : null,
+    danger       : null,
+    
+    header       : null,
+    footer       : null,
+    
     width        : null,
     height       : null,
     addClass     : null,
-    header       : null,
-    footer       : null,
+    
     close        : true,
     animation    : true,
+
     animateOpen  : 'edbox-animate-open',
     animateClose : 'edbox-animate-close',
+    
     beforeOpen   : function() {},
-    beforeClose  : function() {},
     afterOpen    : function() {},
+    beforeClose  : function() {},
     afterClose   : function() {}
 });

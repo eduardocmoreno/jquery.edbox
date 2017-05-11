@@ -21,7 +21,7 @@
     <header class="header">
         <img src="assets/images/edbox.svg" alt="jQuery edbox plugin" class="logo">
         <div class="description">Responsive and lightweight modal plugin.</div>
-        <div class="version">v2.1.0</div>
+        <div class="version">v2.2.0</div>
         <nav class="menu">
             <a href="jquery.edbox.zip" class="link" title="download zip file">download (.zip)</a>
             <a href="https://github.com/eduardocmoreno/edbox2" class="link" title="github repository">github</a>
@@ -115,7 +115,7 @@ $('.link-url').edbox({
             <div class="codes">
                 <div class="code-cel">
                     <div class="code-title">html</div>
-<pre><code class="language-markup">&lt;a href="#" class="link-image" data-box-footer="Curitiba - Parana - Brazil">Image load example&lt;/a></code></pre>
+<pre><code class="language-markup">&lt;a href="#" class="link-image" data-box-header="Curitiba - Parana - Brazil">Image load example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
                     <div class="code-title">js</div>
@@ -125,8 +125,33 @@ $('.link-image').edbox({
 });</code></pre>
                 </div>
             </div>
-            <a class="btn btn-example link-image" data-box-footer="Curitiba - Parana - Brazil" href="#" data-box-image="assets/images/curitiba-brazil.jpg">Image load example</a>
-        </section>  
+            <a class="btn btn-example link-image" data-box-header="Curitiba - Parana - Brazil" href="#" data-box-image="assets/images/curitiba-brazil.jpg">Image load example</a>
+        </section>
+
+
+        <!-- EXAMPLE 5 -->
+        <section class="example">
+            <div class="sub-title">Alerts</div>
+            <div class="codes">
+                <div class="code-cel">
+<pre><code class="language-javascript">//Success
+$.edbox({ success: '&lt;i>&lt;b>Success&lt;/b>&lt;/i> request!' });
+
+//Info
+$.edbox({ info: 'Some text or &lt;html> info!' });
+
+//Warning
+$.edbox({ warning: '&lt;b>Warning&lt;/b>, &lt;i>do not go ahead&lt;/i>!' });
+
+//Danger
+$.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
+                </div>
+            </div>
+            <button class="btn btn-example btn-success">Success</button>
+            <button class="btn btn-example btn-info">Info</button>
+            <button class="btn btn-example btn-warning">Warning</button>
+            <button class="btn btn-example btn-danger">Danger</button>
+        </section>
         
         <div class="title">Options</div>
         
@@ -166,6 +191,42 @@ $('.link-image').edbox({
                         <td>url path (files, pages, etc...)</td>
                     </tr>
                     <tr>
+                        <td>success</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Alert success</td>
+                    </tr>
+                    <tr>
+                        <td>info</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Alert info</td>
+                    </tr>
+                    <tr>
+                        <td>warning</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Alert warning</td>
+                    </tr>
+                    <tr>
+                        <td>danger</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Alert danger</td>
+                    </tr>
+                    <tr>
+                        <td>header</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Optional header tag - accepts html and/or text</td>
+                    </tr>
+                    <tr>
+                        <td>footer</td>
+                        <td>string</td>
+                        <td>null</td>
+                        <td>Optional footer tag - accepts html and/or text</td>
+                    </tr>
+                    <tr>
                         <td>width</td>
                         <td>number</td>
                         <td>null</td>
@@ -182,18 +243,6 @@ $('.link-image').edbox({
                         <td>string</td>
                         <td>null</td>
                         <td>Adds a especific class to the modal</td>
-                    </tr>
-                    <tr>
-                        <td>header</td>
-                        <td>string</td>
-                        <td>null</td>
-                        <td>Optional header tag - accepts html and/or text</td>
-                    </tr>
-                    <tr>
-                        <td>footer</td>
-                        <td>string</td>
-                        <td>null</td>
-                        <td>Optional footer tag - accepts html and/or text</td>
                     </tr>
                     <tr>
                         <td>close</td>
@@ -226,19 +275,19 @@ $('.link-image').edbox({
                         <td>Function callback before open the modal</td>
                     </tr>
                     <tr>
-                        <td>beforeClose</td>
-                        <td>function</td>
-                        <td>function() {}</td>
-                        <td>Function callback before close the modal</td>
-                    </tr>
-                    <tr>
                         <td>afterOpen</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback after open the modal</td>
                     </tr>
                     <tr>
-                        <td>afterOpen</td>
+                        <td>beforeClose</td>
+                        <td>function</td>
+                        <td>function() {}</td>
+                        <td>Function callback before close the modal</td>
+                    </tr>
+                    <tr>
+                        <td>afterClose</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback after close the modal</td>
@@ -317,6 +366,14 @@ $.edbox('close');
             <li>Some CSS adjustments;</li>
         </ul>
 
+        <strong>v2.2.0</strong>
+        <ul>
+            <li>Fix image load;</li>
+            <li>Fix callback afterClose;</li>
+            <li>New alert options like bootstrap;</li>
+            <li>New CSS properties and adjustments;</li>
+        </ul>
+
         <div class="title">Author</div>
 
         <p>
@@ -348,18 +405,37 @@ $.edbox('close');
     <script src="assets/js/jquery.edbox.js"></script>
     <script>
         $(document).ready(function() {
+            //Target
             $('.link-target').edbox();
+            
+            //HTML/Text
             $('.link-html').edbox({
                 animateOpen: 'animated tada',
                 animateClose: 'animated flipOutX'
             });
+            
+            //URL
             $('.link-url').edbox({
                 addClass: 'example-url',
                 width: 900
             });
+            
+            //Image
             $('.link-image').edbox({
                 addClass: 'example-image'
             });
+            
+            //Success
+            $('.btn-success').edbox({ success: '<i><b>Success</b></i> request!' });
+
+            //Info
+            $('.btn-info').edbox({ info: 'Some text or &lt;html> info!' });
+
+            //Warning
+            $('.btn-warning').edbox({ warning: '<b>Warning</b>, <i>do not go ahead</i>!' });
+
+            //Danger
+            $('.btn-danger').edbox({ danger: 'Sorry,<br>unespected error!' });
         });
     </script>
 </body>
