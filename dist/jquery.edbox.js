@@ -1,12 +1,12 @@
 /*
-* jQuery Edbox plugin v.2.2.1
+* jQuery Edbox plugin v.2.2.2
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
 
 ;(function($, settings, self) {
 
-    function edbox(options, el) {
+    function Edbox(options, el) {
         self = this;
 
         self.opt = $.extend({}, settings, options);
@@ -28,7 +28,9 @@
         self.target = self.opt.target || self.attr.target;
         self.html   = self.opt.html   || self.attr.html;
         self.image  = self.opt.image  || self.attr.image;
-        self.url    = self.opt.url    || href || self.attr.url;
+        self.url    = self.opt.url    || self.attr.url || href;
+        self.header = self.opt.header || self.attr.header;
+        self.footer = self.opt.footer || self.attr.footer;
 
         self.$box        = $('<div class="edbox"/>');
         self.$boxError   = $('<div class="edbox-error"/>');
@@ -45,7 +47,7 @@
         self.init();
     }
 
-    edbox.prototype = {
+    Edbox.prototype = {
         init: function(){
             self.base();
 
@@ -112,7 +114,8 @@
         base: function(){
             self.$box
             .addClass(self.opt.addClass)
-            .add(self.opt.close && self.$boxClose)
+            .addClass(!self.opt.close && 'edbox-close-false')
+            .add(self.$boxClose)
             .on('click', self.events.click);
 
             $('body').prepend(self.$box);
@@ -134,18 +137,13 @@
             .append(
                 $('<div/>')
                 .addClass('edbox-alert-container')
-                .append('<div>' + msg + '</div>', self.opt.close && self.$boxClose)
+                .append('<div>' + msg + '</div>', self.$boxClose)
                 );
 
             self.toggle('open');
         },
 
         insert: function(content){
-            var header = self.opt.header || self.attr.header;
-            var footer = self.opt.footer || self.attr.footer;
-
-            self.opt.close && header && self.$boxHeader.append(self.$boxClose);
-
             self.$box.append(
                 self.$boxBody
                 .css({
@@ -153,12 +151,13 @@
                     height: self.opt.height
                 })
                 .append(
-                    header && self.$boxHeader.append(header),
-                    self.opt.close && !header && self.$boxClose,
+                    self.header ? self.$boxHeader.append(self.$boxClose, self.header) : self.$boxClose,
                     self.$boxContent.append(content),
-                    footer && self.$boxFooter.append(footer)
+                    self.footer && self.$boxFooter.append(self.footer)
                     )
                 );
+
+            self.boxCloseCssRight = self.$boxClose.css('right');
 
             self.toggle('open');
             
@@ -214,12 +213,21 @@
                 self.opt.close && e.which == 27 && self.toggle('close');
             },
             resize: function(){
-                var body_h = self.$boxBody.outerHeight();
-                var header_h = self.$boxHeader.outerHeight();
-                var footer_h = self.$boxFooter.outerHeight();
-                var content_h = self.$boxContent.get(0).scrollHeight;
-                var overflow = Math.ceil(body_h - (header_h + footer_h)) < content_h ? true : false;
+                var body_h      = self.$boxBody.outerHeight();
+                var header_h    = self.$boxHeader.outerHeight();
+                var footer_h    = self.$boxFooter.outerHeight();
+                var content_h   = self.$boxContent.get(0).scrollHeight;
+                
+                var overflow    = Math.ceil(body_h - (header_h + footer_h)) < content_h ? true : false;
+                var scrollWidth = $(window).outerWidth() - self.$box.innerWidth();
+
                 self.$boxBody[overflow ? 'addClass' : 'removeClass']('edbox-scroll-true');
+                
+                if(!self.header && overflow && self.boxCloseCssRight){
+                    self.$boxClose.css('right', scrollWidth + parseFloat(self.boxCloseCssRight));
+                } else {
+                    self.$boxClose.removeAttr('style');
+                }
             }
         },
 
@@ -262,7 +270,7 @@
         }
 
         if((typeof options == 'object' || $(el).length) && !data) {
-            $.data(window, 'edbox', new edbox(options, el));
+            $.data(window, 'edbox', new Edbox(options, el));
             return;
         }
     };

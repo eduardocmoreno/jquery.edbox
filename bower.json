@@ -1,6 +1,6 @@
 {
   "name": "jquery.edbox",
-  "version": "2.2.1",
+  "version": "2.2.2",
   "main": [
     "dist/jquery.edbox.js",
     "dist/edbox.css"
@@ -24,5 +24,9 @@
   ],
   "dependencies": {
     "jquery": "^3.0.0"
+  },
+  "devDependencies": {
+    "prism": "^1.6.0",
+    "animate.css": "^3.5.2"
   }
 }

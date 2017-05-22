@@ -1,5 +1,11 @@
 @import 'partials/mixins';
 
+*,
+*:before,
+*:after{
+	box-sizing: border-box;
+}
+
 body{
 	margin: 0;
 	padding: 0;
@@ -25,13 +31,13 @@ ul{
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	height: 400px;
+	padding: 20px 10px;
 	border-bottom: 5px solid orange;
 	background: darkslategray;
 	color: #fff;
 	text-align: center;
 	.logo{
-		width: 220px;
+		width: 180px;
 	}
 	.description{
 		margin-top: 20px;
@@ -61,7 +67,13 @@ ul{
 		}
 	}
 	.packages{
-		margin-top: 10px;
+		margin-top: 20px;
+		pre{
+			margin: 0;
+		}
+		@include mobile{
+			font-size: 12px;
+		}
 	}
 }
 
@@ -102,7 +114,6 @@ ul{
 }
 
 .codes{
-	//margin-bottom: 10px;
 	.code-cel{
 		.code-title{
 			padding: 10px;
@@ -206,6 +217,28 @@ ul{
 	}
 }
 
+.changelog{
+	.tag{
+		margin-right: 3px;
+		padding: 2px 5px;
+		border-radius: 2px;
+		font-size: 10px;
+		vertical-align: top;
+		&.tag-js{
+			background: gold;
+			color: #333;
+		}
+		&.tag-html{
+			background: orange;
+			color: #fff;
+		}
+		&.tag-css{
+			background: dodgerblue;
+			color: #fff;
+		}
+	}
+}
+
 
 .footer{
 	margin-top: 50px;
@@ -259,7 +292,8 @@ ul{
 			.photo{
 				float: left;
 				img{
-					width: 300px;
+					width: 100%;
+					max-width: 400px;
 				}
 				figcaption{
 					font-size: 14px;

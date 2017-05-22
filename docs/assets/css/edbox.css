@@ -39,8 +39,6 @@
       top: 5px;
       right: 5px;
       color: #000; }
-    .edbox .edbox-body.edbox-scroll-true > .edbox-close {
-      right: 25px; }
 
 @-moz-document url-prefix() {
   .edbox .edbox-body.edbox-scroll-true .edbox-content {
@@ -62,6 +60,8 @@
         display: block !important; }
       .edbox .edbox-body .edbox-content > img {
         display: block; }
+  .edbox.edbox-close-false .edbox-close {
+    display: none; }
   .edbox.edbox-alert {
     align-items: flex-start;
     padding-top: 30px;

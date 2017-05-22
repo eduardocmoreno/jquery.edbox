@@ -11,7 +11,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/components/prism/themes/prism.css">
+    <link rel="stylesheet" href="assets/components/prism/themes/prism.min.css">
     <link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
     <link rel="stylesheet" href="assets/css/edbox.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -21,7 +21,7 @@
     <header class="header">
         <img src="assets/images/edbox.svg" alt="jQuery edbox plugin" class="logo">
         <div class="description">Responsive and lightweight modal plugin.</div>
-        <div class="version">v2.2.1</div>
+        <div class="version">v2.2.2</div>
         <nav class="menu">
             <a href="jquery.edbox.zip" class="link" title="download zip file">download (.zip)</a>
             <a href="https://github.com/eduardocmoreno/jquery.edbox" class="link" title="github repository">github</a>
@@ -350,37 +350,46 @@ $.edbox('close');
 </code></pre>
 
         <div class="title">Changelog</div>
+        
+        <div class="changelog">
+            <strong>v2.0.0</strong>
+            <ul>
+                <li>New features;</li>
+                <li>Easy to use;</li>
+                <li>Easy customization;</li>
+                <li>CSS animations;</li>
+                <li>SASS file;</li>
+            </ul>
 
-        <strong>v2.0.0</strong>
-        <ul>
-            <li>New features;</li>
-            <li>Easy to use;</li>
-            <li>Easy customization;</li>
-            <li>CSS animations;</li>
-            <li>SASS file;</li>
-        </ul>
+            <strong>v2.1.0</strong>
+            <ul>
+                <li><span class="tag tag-js">JS</span><span class="tag tag-html">HTML</span>New settable attributes "data-box-header" and "data-box-footer";</li>
+                <li><span class="tag tag-css">CSS</span>Adjustments;</li>
+            </ul>
 
-        <strong>v2.1.0</strong>
-        <ul>
-            <li>New settable attributes "data-box-header" and "data-box-footer";</li>
-            <li>CSS adjustments;</li>
-        </ul>
+            <strong>v2.2.0</strong>
+            <ul>
+                <li><span class="tag tag-js">JS</span>Fixed image load;</li>
+                <li><span class="tag tag-js">JS</span>Fixed callback afterClose;</li>
+                <li><span class="tag tag-js">JS</span>New alert options like bootstrap;</li>
+                <li><span class="tag tag-css">CSS</span>New CSS properties and adjustments;</li>
+            </ul>
 
-        <strong>v2.2.0</strong>
-        <ul>
-            <li>Fix image load;</li>
-            <li>Fix callback afterClose;</li>
-            <li>New alert options like bootstrap;</li>
-            <li>New CSS properties and adjustments;</li>
-        </ul>
+            <strong>v2.2.1</strong>
+            <ul>
+                <li><span class="tag tag-js">JS</span>Improved url option;</li>
+                <li><span class="tag tag-js">JS</span>Improved header option;</li>
+                <li><span class="tag tag-js">JS</span>Improved validations;</li>
+                <li><span class="tag tag-css">CSS</span>Adjustments;</li>
+            </ul>
 
-        <strong>v2.2.1</strong>
-        <ul>
-            <li>Improved url option;</li>
-            <li>Improved header option;</li>
-            <li>Improved validations;</li>
-            <li>CSS adjustments;</li>
-        </ul>
+            <strong>v2.2.2</strong>
+            <ul>
+                <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Improved close button positioning based on scrollbar width</li>
+                <li><span class="tag tag-js">JS</span>Other small improvements</li>
+                <li><span class="tag tag-css">CSS</span>New helper class added to the parent box if option close is false</li>
+            </ul>
+        </div>
 
         <div class="title">Author</div>
 
@@ -409,7 +418,7 @@ $.edbox('close');
     <footer class="footer">Copyright © 2017 - Eduardo Moreno</footer>
 
     <script src="assets/components/jquery/dist/jquery.min.js"></script>
-    <script src="assets/components/prism/prism.js"></script>
+    <script src="assets/components/prism/prism.min.js"></script>
     <script src="assets/js/jquery.edbox.js"></script>
     <script>
         $(document).ready(function() {

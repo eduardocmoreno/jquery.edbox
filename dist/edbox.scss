@@ -44,10 +44,8 @@
             right: 5px;
             color: #000;
         }
+
         &.edbox-scroll-true{
-            & > .edbox-close{
-                right: 25px;
-            }
             @-moz-document  url-prefix(){
                 .edbox-content{
                     padding-right: 17px;
@@ -76,6 +74,11 @@
             & > img{
                 display: block;
             }
+        }
+    }
+    &.edbox-close-false{
+        .edbox-close{
+            display: none;
         }
     }    
     &.edbox-alert{

@@ -1,3 +1,8 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box; }
+
 body {
   margin: 0;
   padding: 0;
@@ -20,13 +25,13 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 400px;
+  padding: 20px 10px;
   border-bottom: 5px solid orange;
   background: darkslategray;
   color: #fff;
   text-align: center; }
   .header .logo {
-    width: 220px; }
+    width: 180px; }
   .header .description {
     margin-top: 20px;
     font-size: 20px;
@@ -49,7 +54,12 @@ ul {
       .header .menu .link:hover {
         color: orange; }
   .header .packages {
-    margin-top: 10px; }
+    margin-top: 20px; }
+    .header .packages pre {
+      margin: 0; }
+    @media (max-width: 767px) {
+      .header .packages {
+        font-size: 12px; } }
 
 .container {
   margin-right: auto;
@@ -157,6 +167,22 @@ ul {
     .table-wrapper .table tbody tr:nth-child(even) {
       background: #F5F2F0; }
 
+.changelog .tag {
+  margin-right: 3px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  font-size: 10px;
+  vertical-align: top; }
+  .changelog .tag.tag-js {
+    background: gold;
+    color: #333; }
+  .changelog .tag.tag-html {
+    background: orange;
+    color: #fff; }
+  .changelog .tag.tag-css {
+    background: dodgerblue;
+    color: #fff; }
+
 .footer {
   margin-top: 50px;
   padding: 20px 0;
@@ -199,7 +225,8 @@ ul {
     .edbox.example-url .url-content .photo {
       float: left; }
       .edbox.example-url .url-content .photo img {
-        width: 300px; }
+        width: 100%;
+        max-width: 400px; }
       .edbox.example-url .url-content .photo figcaption {
         font-size: 14px;
         text-align: center; }
