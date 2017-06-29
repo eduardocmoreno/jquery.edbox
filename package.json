@@ -1,6 +1,6 @@
 {
   "name": "jquery.edbox",
-  "version": "2.2.2",
+  "version": "2.2.3",
   "main": "dist/jquery.edbox.js",
   "keywords": [
     "jquery",

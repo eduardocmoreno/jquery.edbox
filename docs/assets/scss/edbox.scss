@@ -44,14 +44,6 @@
             right: 5px;
             color: #000;
         }
-
-        &.edbox-scroll-true{
-            @-moz-document  url-prefix(){
-                .edbox-content{
-                    padding-right: 17px;
-                }
-            }
-        }
         .edbox-header,
         .edbox-footer{
             padding: 10px;
@@ -73,6 +65,16 @@
             }
             & > img{
                 display: block;
+            }
+        }
+    }
+    &.edbox-scroll-y-true{
+        .edbox-body{
+            &, .edbox-content{
+                height: 100%;
+            }
+            & > .edbox-close{
+                right: 22px;
             }
         }
     }

@@ -39,10 +39,6 @@
       top: 5px;
       right: 5px;
       color: #000; }
-
-@-moz-document url-prefix() {
-  .edbox .edbox-body.edbox-scroll-true .edbox-content {
-    padding-right: 17px; } }
     .edbox .edbox-body .edbox-header,
     .edbox .edbox-body .edbox-footer {
       padding: 10px;
@@ -60,6 +56,10 @@
         display: block !important; }
       .edbox .edbox-body .edbox-content > img {
         display: block; }
+  .edbox.edbox-scroll-y-true .edbox-body, .edbox.edbox-scroll-y-true .edbox-body .edbox-content {
+    height: 100%; }
+  .edbox.edbox-scroll-y-true .edbox-body > .edbox-close {
+    right: 22px; }
   .edbox.edbox-close-false .edbox-close {
     display: none; }
   .edbox.edbox-alert {

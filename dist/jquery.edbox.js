@@ -1,5 +1,5 @@
 /*
-* jQuery Edbox plugin v.2.2.2
+* jQuery Edbox plugin v.2.2.3
 * @author Eduardo Moreno - eduardocmoreno[at]gmail[dot]com
 * Code under MIT License - http://en.wikipedia.org/wiki/MIT_License
 */
@@ -216,18 +216,10 @@
                 var body_h      = self.$boxBody.outerHeight();
                 var header_h    = self.$boxHeader.outerHeight();
                 var footer_h    = self.$boxFooter.outerHeight();
-                var content_h   = self.$boxContent.get(0).scrollHeight;
-                
+                var content_h   = self.$boxContent.get(0).scrollHeight;                
                 var overflow    = Math.ceil(body_h - (header_h + footer_h)) < content_h ? true : false;
-                var scrollWidth = $(window).outerWidth() - self.$box.innerWidth();
 
-                self.$boxBody[overflow ? 'addClass' : 'removeClass']('edbox-scroll-true');
-                
-                if(!self.header && overflow && self.boxCloseCssRight){
-                    self.$boxClose.css('right', scrollWidth + parseFloat(self.boxCloseCssRight));
-                } else {
-                    self.$boxClose.removeAttr('style');
-                }
+                self.$box[overflow ? 'addClass' : 'removeClass']('edbox-scroll-y-true');
             }
         },
 
