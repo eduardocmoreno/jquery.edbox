@@ -20,6 +20,10 @@ ul {
   line-height: 30px;
   font-size: 14px; }
 
+h1, h2, h3, h4 {
+  margin: 0;
+  font-weight: normal; }
+
 .header {
   display: flex;
   flex-direction: column;
@@ -30,7 +34,7 @@ ul {
   background: darkslategray;
   color: #fff;
   text-align: center; }
-  .header .logo {
+  .header .logo img {
     width: 180px; }
   .header .description {
     margin-top: 20px;

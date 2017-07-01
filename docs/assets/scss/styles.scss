@@ -26,6 +26,11 @@ ul{
 	font-size: 14px;
 }
 
+h1,h2,h3,h4{
+	margin: 0;
+	font-weight: normal;
+}
+
 .header{
 	display: flex;
 	flex-direction: column;
@@ -37,7 +42,9 @@ ul{
 	color: #fff;
 	text-align: center;
 	.logo{
-		width: 180px;
+		img{
+			width: 180px;
+		}
 	}
 	.description{
 		margin-top: 20px;

@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="jQuery edBox plugin">
+    <meta name="description" content="Responsive and lightweight modal plugin with css animations, easy customization and alert messages.">
     <meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal,edbox">
+    <meta name="robots" content="index, follow">
     <meta name="author" content="Eduardo Moreno">
     
     <title>jQuery edbox plugin</title>
 
     <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400" rel="stylesheet">
 
-    <link rel="stylesheet" href="assets/components/prism/themes/prism.min.css">
+    <link rel="stylesheet" href="assets/components/prism/themes/prism.min.css" media="none" onload="if(media!='all')media='all'">
     <link rel="stylesheet" href="assets/components/animate.css/animate.min.css">
     <link rel="stylesheet" href="assets/css/edbox.css">
     <link rel="stylesheet" href="assets/css/styles.css">
@@ -19,7 +20,9 @@
 <body>
     
     <header class="header">
-        <img src="assets/images/edbox.svg" alt="jQuery edbox plugin" class="logo">
+        <h1 class="logo">
+            <img src="assets/images/edbox.svg" alt="jQuery edbox plugin">
+        </h1>
         <div class="description">Responsive and lightweight modal plugin.</div>
         <div class="version">v2.2.3</div>
         <nav class="menu">
@@ -34,14 +37,14 @@ npm: npm install jquery.edbox --save</code></pre>
 
     <div class="container">
         
-        <div class="title">Examples</div>
+        <h2 class="title">Examples</h2>
         
         <!-- EXAMPLE 1 -->
         <section class="example">
-            <div class="sub-title">Target (DOM element)</div>
+            <h3 class="sub-title">Target (DOM element)</h3>
             <div class="codes">
                 <div class="code-cel">
-                    <div class="code-title">html</div>
+                    <h4 class="code-title">html</h4>
 <pre><code class="language-markup">&lt;!-- DOM element --&gt;
 &lt;div id="target">My #target element&lt;/div>
 
@@ -49,7 +52,7 @@ npm: npm install jquery.edbox --save</code></pre>
 &lt;a href="#" data-box-target="#target" class="link-target">Element target example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
-                    <div class="code-title">js</div>
+                    <h4 class="code-title">js</h4>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-target').edbox();</code></pre>
                 </div>
@@ -64,15 +67,15 @@ $('.link-target').edbox();</code></pre>
 
         <!-- EXAMPLE 2 -->
         <section class="example">
-            <div class="sub-title">HTML or Text</div>
+            <h3 class="sub-title">HTML or Text</h3>
             <div class="codes">
                 <div class="code-cel">
-                    <div class="code-title">html</div>
+                    <h4 class="code-title">html</h4>
 <pre><code class="language-markup">&lt;!-- modal link --&gt;
 &lt;a href="#" data-box-html="&lt;div class='example-html'>&lt;h1>Hello there!&lt;/h1>&lt;/div>" class="link-html">HTML content example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
-                    <div class="code-title">js</div>
+                    <h4 class="code-title">js</h4>
 <pre><code class="language-javascript">//what about use a different animation option this time?
 //this example uses "animate.css" library, take a look in "daneden.github.io/animate.css"
 //you can make your own animation too
@@ -88,15 +91,15 @@ $('.link-html').edbox({
         
         <!-- EXAMPLE 3 -->
         <section class="example">
-            <div class="sub-title">URL load</div>
+            <h3 class="sub-title">URL load</h3>
             <div class="codes">
                 <div class="code-cel">
-                    <div class="code-title">html</div>
+                    <h4 class="code-title">html</h4>
 <pre><code class="language-markup">&lt;!-- use href attribute --&gt;
 &lt;a href="assets/html/curitiba.html" class="link-url">URL load example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
-                    <div class="code-title">js</div>
+                    <h4 class="code-title">js</h4>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-url').edbox({
     //add an extra class to the modal for an especific style
@@ -111,14 +114,14 @@ $('.link-url').edbox({
         
         <!-- EXAMPLE 4 -->
         <section class="example">
-            <div class="sub-title">Image load</div>
+            <h3 class="sub-title">Image load</h3>
             <div class="codes">
                 <div class="code-cel">
-                    <div class="code-title">html</div>
+                    <h4 class="code-title">html</h4>
 <pre><code class="language-markup">&lt;a href="#" class="link-image" data-box-header="Curitiba - Parana - Brazil">Image load example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
-                    <div class="code-title">js</div>
+                    <h4 class="code-title">js</h4>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.link-image').edbox({
     image: 'curitiba-brazil.jpg'
@@ -131,7 +134,7 @@ $('.link-image').edbox({
 
         <!-- EXAMPLE 5 -->
         <section class="example">
-            <div class="sub-title">Alerts</div>
+            <h3 class="sub-title">Alerts</h3>
             <div class="codes">
                 <div class="code-cel">
 <pre><code class="language-javascript">//Success
@@ -153,7 +156,7 @@ $.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
             <button class="btn btn-example btn-danger">Danger</button>
         </section>
         
-        <div class="title">Options</div>
+        <h2 class="title">Options</h2>
         
         <div class="table-wrapper">
             <table class="table">
@@ -296,7 +299,7 @@ $.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
             </table>
         </div>
 
-        <div class="title">Attributes</div>
+        <h2 class="title">Attributes</h2>
         
         <div class="table-wrapper">
             <table class="table">
@@ -335,7 +338,7 @@ $.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
             </table>
         </div>
 
-        <div class="title">Methods</div>
+        <h2 class="title">Methods</h2>
 <pre><code class="language-javascript">//set edbox for the set of matched elements
 $('.myModalLink').edbox({ options });
 
@@ -349,10 +352,10 @@ $.edboxSettings({ options });
 $.edbox('close');
 </code></pre>
 
-        <div class="title">Changelog</div>
+        <h2 class="title">Changelog</h2>
         
         <div class="changelog">
-            <strong>v2.0.0</strong>
+            <h3>v2.0.0</h3>
             <ul>
                 <li>New features;</li>
                 <li>Easy to use;</li>
@@ -361,13 +364,13 @@ $.edbox('close');
                 <li>SASS file;</li>
             </ul>
 
-            <strong>v2.1.0</strong>
+            <h3>v2.1.0</h3>
             <ul>
                 <li><span class="tag tag-js">JS</span><span class="tag tag-html">HTML</span>New settable attributes "data-box-header" and "data-box-footer";</li>
                 <li><span class="tag tag-css">CSS</span>Adjustments;</li>
             </ul>
 
-            <strong>v2.2.0</strong>
+            <h3>v2.2.0</h3>
             <ul>
                 <li><span class="tag tag-js">JS</span>Fixed image load;</li>
                 <li><span class="tag tag-js">JS</span>Fixed callback afterClose;</li>
@@ -375,7 +378,7 @@ $.edbox('close');
                 <li><span class="tag tag-css">CSS</span>New CSS properties and adjustments;</li>
             </ul>
 
-            <strong>v2.2.1</strong>
+            <h3>v2.2.1</h3>
             <ul>
                 <li><span class="tag tag-js">JS</span>Improved url option;</li>
                 <li><span class="tag tag-js">JS</span>Improved header option;</li>
@@ -383,20 +386,20 @@ $.edbox('close');
                 <li><span class="tag tag-css">CSS</span>Adjustments;</li>
             </ul>
 
-            <strong>v2.2.2</strong>
+            <h3>v2.2.2</h3>
             <ul>
                 <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Improved close button positioning based on scrollbar width</li>
                 <li><span class="tag tag-js">JS</span>Other small improvements</li>
                 <li><span class="tag tag-css">CSS</span>New helper class added to the parent box if option close is false</li>
             </ul>
 
-            <strong>v2.2.3</strong>
+            <h3>v2.2.3</h3>
             <ul>
                 <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Some adjustments for better browser compatibility</li>
             </ul>
         </div>
 
-        <div class="title">Author</div>
+        <h2 class="title">Author</h2>
 
         <p>
             <strong>Eduardo Moreno</strong><br>
