@@ -2,12 +2,15 @@
 Responsive and lightweight modal plugin.
 Check for examples at the **[plugin page here](https://eduardocmoreno.github.io/jquery.edbox/)**
 
-#### Download
+## Download
 **bower:** bower install jquery.edbox --save
+
 **npm:** npm install jquery.edbox --save
+
 **zip:** [download .zip file](https://eduardocmoreno.github.io/jquery.edbox/jquery.edbox.zip)
 
-#### Options
+
+## Options
 Option | Tag attribute | Type | Default | Description
 --- | --- | --- | --- | ---
 target | data-box-target | string | null | DOM element
@@ -32,7 +35,7 @@ afterOpen | data-box-after-open | function | function() {} | Function callback a
 beforeClose | data-box-before-close | function | function() {} | Function callback before close the modal
 afterClose | data-box-after-close | function | function() {} | Function callback after close the modal
 
-#### Methods
+## Methods
 ```javascript
 //set edbox for the set of matched elements
 $('.myModalLink').edbox({ options });
@@ -47,7 +50,7 @@ $.edboxSettings({ options });
 $.edbox('close');
 ```
 
-#### Change Log
+## Change Log
 **v2.3.0**
 * [JS] - Now it's possible to use all options as tag attribute
 
