@@ -122,11 +122,17 @@
             }
         }
     }
+    .edbox-animate-open,
+    .edbox-animate-close{
+        animation-duration: .35s;
+        animation-timing-function: ease-in-out;
+        animation-fill-mode: forwards;
+    }
     .edbox-animate-open{
-        animation: edbox-animate-open .35s ease-in-out forwards;
+        animation-name: edbox-animate-open;
     }
     .edbox-animate-close{
-        animation: edbox-animate-close .35s ease-in-out forwards;
+        animation-name: edbox-animate-close;
     }
 }
 

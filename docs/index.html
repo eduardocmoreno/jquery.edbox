@@ -4,27 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Responsive and lightweight modal plugin with css animations, easy customization and alert messages.">
-    <meta name="keywords" content="HTML,CSS,JavaScript,jquery,plugin,modal,edbox">
     <meta name="robots" content="index, follow">
     <meta name="author" content="Eduardo Moreno">
     
-    <title>jQuery edbox plugin</title>
+    <title>jQuery edbox modal plugin</title>
 </head>
 <body>
     
     <header class="header">
-        <h1 class="logo">
-            <img src="assets/images/edbox.svg" alt="jQuery edbox plugin">
-        </h1>
-        <div class="description">Responsive and lightweight modal plugin.</div>
-        <div class="version">v2.2.3</div>
-        <nav class="menu">
-            <a href="https://github.com/eduardocmoreno/jquery.edbox" class="link" title="github repository">github</a>
-            <a href="jquery.edbox.zip" class="link" title="download zip file">download (.zip)</a>
-        </nav>
-        <div class="packages">
-<pre><code>bower: bower install jquery.edbox --save
-npm: npm install jquery.edbox --save</code></pre>
+        <div class="container">
+            <div class="alpha">
+                <div class="logo">
+                    <img src="assets/images/edbox.svg" alt="jQuery edbox plugin">
+                </div>
+                <div class="info">
+                    <div class="version">v2.3.0</div>
+                    <h1 class="description">Responsive and lightweight modal plugin.</h1>
+                </div>
+            </div>
+            <div class="bravo">
+                <nav class="menu">
+                    <a href="https://github.com/eduardocmoreno/jquery.edbox" class="link" title="github repository">github</a>
+                    <a href="jquery.edbox.zip" class="link" title="download zip file">download (.zip)</a>
+                </nav>
+                <div class="packages">
+                    bower: bower install jquery.edbox --save<br>
+                    npm: npm install jquery.edbox --save
+                </div>
+            </div>
         </div>
     </header>
 
@@ -41,7 +48,7 @@ npm: npm install jquery.edbox --save</code></pre>
 <pre><code class="language-markup">&lt;!-- DOM element --&gt;
 &lt;div id="target">My #target element&lt;/div>
 
-&lt;!-- modal link --&gt;
+&lt;!-- button link --&gt;
 &lt;a href="#" data-box-target="#target" class="link-target">Element target example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
@@ -64,21 +71,26 @@ $('.link-target').edbox();</code></pre>
             <div class="codes">
                 <div class="code-cel">
                     <h4 class="code-title">html</h4>
-<pre><code class="language-markup">&lt;!-- modal link --&gt;
-&lt;a href="#" data-box-html="&lt;div class='example-html'>&lt;h1>Hello there!&lt;/h1>&lt;/div>" class="link-html">HTML content example&lt;/a></code></pre>
+<pre><code class="language-markup">&lt;!-- 
+What about use a different animation option this time?
+This example uses "animate.css" library by Daniel Eden, take a look at "daneden.github.io/animate.css"
+You can make your own animation too.
+--&gt;
+
+&lt;a href="#" class="link-html"
+data-box-html="&lt;div class='example-html'>Hello there!&lt;/div>"
+data-box-animate-open="animated tada"
+data-box-animate-close="animated flipOutX">
+    HTML content example
+&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
                     <h4 class="code-title">js</h4>
-<pre><code class="language-javascript">//what about use a different animation option this time?
-//this example uses "animate.css" library, take a look in "daneden.github.io/animate.css"
-//you can make your own animation too
-$('.link-html').edbox({
-    animateOpen: 'animated tada',
-    animateClose: 'animated flipOutX'
-});</code></pre>
+<pre><code class="language-javascript">//set edbox for the set of matched elements
+$('.link-html').edbox();</code></pre>
                 </div>
             </div>
-            <a href="#" data-box-html="<div class='example-html'><h1>Hello there!</h1></div>" class="btn btn-example link-html">HTML content example</a>
+            <a href="#" class="btn btn-example link-html" data-box-html="<div class='example-html'>Hello there!</div>" data-box-animate-open="animated tada" data-box-animate-close="animated flipOutX">HTML content example</a>
         </section>
 
         
@@ -121,7 +133,7 @@ $('.link-image').edbox({
 });</code></pre>
                 </div>
             </div>
-            <a class="btn btn-example link-image" data-box-header="Curitiba - Parana - Brazil" href="#" data-box-image="assets/images/curitiba-brazil.jpg">Image load example</a>
+            <a href="#" class="btn btn-example link-image" data-box-header="Curitiba - Parana - Brazil" data-box-add-class="example-image">Image load example</a>
         </section>
 
 
@@ -156,6 +168,7 @@ $.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
                 <thead>
                     <tr>
                         <th>Option</th>
+                        <th>Tag Attribute</th>
                         <th>Type</th>
                         <th>Default</th>
                         <th>Description</th>
@@ -164,168 +177,150 @@ $.edbox({ danger: 'Sorry,&lt;br>unespected error!' });</code></pre>
                 <tbody>
                     <tr>
                         <td>target</td>
+                        <td>data-box-target</td>
                         <td>string</td>
                         <td>null</td>
                         <td>DOM element</td>
                     </tr>
                     <tr>
                         <td>html</td>
+                        <td>data-box-html</td>
                         <td>string</td>
                         <td>null</td>
                         <td>html and/or text</td>
                     </tr>
                     <tr>
                         <td>image</td>
+                        <td>data-box-image</td>
                         <td>string</td>
                         <td>null</td>
                         <td>image path</td>
                     </tr>
                     <tr>
                         <td>url</td>
+                        <td>data-box-url</td>
                         <td>string</td>
                         <td>null</td>
                         <td>url path (files, pages, etc...)</td>
                     </tr>
                     <tr>
                         <td>success</td>
+                        <td>data-box-success</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Alert success</td>
                     </tr>
                     <tr>
                         <td>info</td>
+                        <td>data-box-info</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Alert info</td>
                     </tr>
                     <tr>
                         <td>warning</td>
+                        <td>data-box-warning</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Alert warning</td>
                     </tr>
                     <tr>
                         <td>danger</td>
+                        <td>data-box-danger</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Alert danger</td>
                     </tr>
                     <tr>
                         <td>header</td>
+                        <td>data-box-header</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Optional header tag - accepts html and/or text</td>
                     </tr>
                     <tr>
                         <td>footer</td>
+                        <td>data-box-footer</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Optional footer tag - accepts html and/or text</td>
                     </tr>
                     <tr>
                         <td>width</td>
+                        <td>data-box-width</td>
                         <td>number</td>
                         <td>null</td>
                         <td>Set a fixed width value to the modal</td>
                     </tr>
                     <tr>
                         <td>height</td>
+                        <td>data-box-height</td>
                         <td>number</td>
                         <td>null</td>
                         <td>Set a fixed height value to the modal</td>
                     </tr>
                     <tr>
                         <td>addClass</td>
+                        <td>data-box-add-class</td>
                         <td>string</td>
                         <td>null</td>
                         <td>Adds a especific class to the modal</td>
                     </tr>
                     <tr>
                         <td>close</td>
+                        <td>data-box-close</td>
                         <td>boolean</td>
                         <td>true</td>
                         <td>Makes the modal closable or not.<br>events: keydown (esc) / click ('x' icon or outside the modal)</td>
                     </tr>
                     <tr>
                         <td>animation</td>
+                        <td>data-box-animation</td>
                         <td>boolean</td>
                         <td>true</td>
                         <td>Makes the modal animable or not.</td>
                     </tr>
                     <tr>
                         <td>animateOpen</td>
+                        <td>data-box-animate-open</td>
                         <td>string</td>
                         <td>'edbox-animate-open'</td>
                         <td>CSS animation class on open</td>
                     </tr>
                     <tr>
                         <td>animateClose</td>
+                        <td>data-box-animate-close</td>
                         <td>string</td>
                         <td>'edbox-animate-close'</td>
                         <td>CSS animation class on close</td>
                     </tr>
                     <tr>
                         <td>beforeOpen</td>
+                        <td>data-box-before-open</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback before open the modal</td>
                     </tr>
                     <tr>
                         <td>afterOpen</td>
+                        <td>data-box-after-open</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback after open the modal</td>
                     </tr>
                     <tr>
                         <td>beforeClose</td>
+                        <td>data-box-before-close</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback before close the modal</td>
                     </tr>
                     <tr>
                         <td>afterClose</td>
+                        <td>data-box-after-close</td>
                         <td>function</td>
                         <td>function() {}</td>
                         <td>Function callback after close the modal</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h2 class="title">Attributes</h2>
-        
-        <div class="table-wrapper">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Option</th>
-                        <th>Attribute</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>target</td>
-                        <td>data-box-target</td>
-                    </tr>
-                    <tr>
-                        <td>html</td>
-                        <td>data-box-html</td>
-                    </tr>
-                    <tr>
-                        <td>image</td>
-                        <td>data-box-image</td>
-                    </tr>
-                    <tr>
-                        <td>url</td>
-                        <td>data-box-url</td>
-                    </tr>
-                    <tr>
-                        <td>header</td>
-                        <td>data-box-header</td>
-                    </tr>
-                    <tr>
-                        <td>footer</td>
-                        <td>data-box-footer</td>
                     </tr>
                 </tbody>
             </table>
@@ -348,18 +343,28 @@ $.edbox('close');
         <h2 class="title">Changelog</h2>
         
         <div class="changelog">
-            <h3>v2.0.0</h3>
+            <h3>v2.3.0</h3>
             <ul>
-                <li>New features;</li>
-                <li>Easy to use;</li>
-                <li>Easy customization;</li>
-                <li>CSS animations;</li>
-                <li>SASS file;</li>
+                <li><span class="tag tag-js">JS</span>Now it's possible to use all options as tag attribute</li>
             </ul>
 
-            <h3>v2.1.0</h3>
+            <h3>v2.2.3</h3>
             <ul>
-                <li><span class="tag tag-js">JS</span><span class="tag tag-html">HTML</span>New settable attributes "data-box-header" and "data-box-footer";</li>
+                <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Some adjustments for better browser compatibility</li>
+            </ul>
+
+            <h3>v2.2.2</h3>
+            <ul>
+                <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Improved close button positioning based on scrollbar width</li>
+                <li><span class="tag tag-js">JS</span>Other small improvements</li>
+                <li><span class="tag tag-css">CSS</span>New helper class added to the parent box if option close is false</li>
+            </ul>
+
+            <h3>v2.2.1</h3>
+            <ul>
+                <li><span class="tag tag-js">JS</span>Improved url option;</li>
+                <li><span class="tag tag-js">JS</span>Improved header option;</li>
+                <li><span class="tag tag-js">JS</span>Improved validations;</li>
                 <li><span class="tag tag-css">CSS</span>Adjustments;</li>
             </ul>
 
@@ -371,24 +376,19 @@ $.edbox('close');
                 <li><span class="tag tag-css">CSS</span>New CSS properties and adjustments;</li>
             </ul>
 
-            <h3>v2.2.1</h3>
+            <h3>v2.1.0</h3>
             <ul>
-                <li><span class="tag tag-js">JS</span>Improved url option;</li>
-                <li><span class="tag tag-js">JS</span>Improved header option;</li>
-                <li><span class="tag tag-js">JS</span>Improved validations;</li>
+                <li><span class="tag tag-js">JS</span><span class="tag tag-html">HTML</span>New settable attributes "data-box-header" and "data-box-footer";</li>
                 <li><span class="tag tag-css">CSS</span>Adjustments;</li>
             </ul>
 
-            <h3>v2.2.2</h3>
+            <h3>v2.0.0</h3>
             <ul>
-                <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Improved close button positioning based on scrollbar width</li>
-                <li><span class="tag tag-js">JS</span>Other small improvements</li>
-                <li><span class="tag tag-css">CSS</span>New helper class added to the parent box if option close is false</li>
-            </ul>
-
-            <h3>v2.2.3</h3>
-            <ul>
-                <li><span class="tag tag-js">JS</span><span class="tag tag-css">CSS</span>Some adjustments for better browser compatibility</li>
+                <li>New features;</li>
+                <li>Easy to use;</li>
+                <li>Easy customization;</li>
+                <li>CSS animations;</li>
+                <li>SASS file;</li>
             </ul>
         </div>
 
@@ -433,10 +433,7 @@ $.edbox('close');
             $('.link-target').edbox();
             
             //HTML/Text
-            $('.link-html').edbox({
-                animateOpen: 'animated tada',
-                animateClose: 'animated flipOutX'
-            });
+            $('.link-html').edbox();
             
             //URL
             $('.link-url').edbox({
@@ -446,7 +443,7 @@ $.edbox('close');
             
             //Image
             $('.link-image').edbox({
-                addClass: 'example-image'
+                image: 'assets/images/curitiba-brazil.jpg'
             });
             
             //Success

@@ -24,53 +24,98 @@ h1, h2, h3, h4 {
   margin: 0;
   font-weight: normal; }
 
-.header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 10px;
-  border-bottom: 5px solid orange;
-  background: darkslategray;
-  color: #fff;
-  text-align: center; }
-  .header .logo img {
-    width: 180px; }
-  .header .description {
-    margin-top: 20px;
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.6); }
-  .header .version {
-    margin: 20px 0;
-    font-family: 'Roboto Condensed', sans-serif;
-    font-size: 30px;
-    font-weight: 300; }
-  .header .menu {
-    display: flex; }
-    .header .menu .link {
-      padding: 15px;
-      border-radius: 2px;
-      background: #fff;
-      color: #999;
-      font-size: 20px; }
-      .header .menu .link:first-child {
-        margin-right: 10px; }
-      .header .menu .link:hover {
-        color: orange; }
-  .header .packages {
-    margin-top: 20px; }
-    .header .packages pre {
-      margin: 0; }
-    @media (max-width: 767px) {
-      .header .packages {
-        font-size: 12px; } }
-
 .container {
   margin-right: auto;
   margin-left: auto;
   padding-right: 20px;
   padding-left: 20px;
-  max-width: 1170px; }
+  max-width: 1880px; }
+
+.header {
+  padding: 15px 0;
+  border-bottom: 5px solid orange;
+  background: darkslategray; }
+  .header .container {
+    display: flex;
+    color: #fff; }
+    @media (max-width: 767px) {
+      .header .container {
+        flex-direction: column; } }
+    @media (min-width: 768px) {
+      .header .container {
+        justify-content: space-between; } }
+    .header .container .alpha {
+      display: flex;
+      align-items: center; }
+      @media (max-width: 767px) {
+        .header .container .alpha {
+          justify-content: center; } }
+      .header .container .alpha .logo {
+        margin-right: 5px; }
+        .header .container .alpha .logo img {
+          width: 130px; }
+      .header .container .alpha .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .header .container .alpha .info {
+            width: 180px; } }
+        @media (min-width: 1024px) {
+          .header .container .alpha .info {
+            padding-top: 16px; } }
+        .header .container .alpha .info .description {
+          font-size: 16px; }
+          @media (max-width: 767px) {
+            .header .container .alpha .info .description {
+              width: 140px;
+              font-size: 12px; } }
+          @media (min-width: 768px) and (max-width: 1023px) {
+            .header .container .alpha .info .description {
+              font-size: 14px; } }
+        .header .container .alpha .info .version {
+          font-family: 'Roboto Condensed', sans-serif;
+          font-size: 30px;
+          font-weight: 300; }
+          @media (max-width: 767px) {
+            .header .container .alpha .info .version {
+              font-size: 24px; } }
+    .header .container .bravo {
+      display: flex;
+      flex-direction: column; }
+      @media (max-width: 767px) {
+        .header .container .bravo {
+          align-items: center;
+          margin-top: 20px;
+          text-align: center; } }
+      @media (min-width: 768px) {
+        .header .container .bravo {
+          align-items: flex-end;
+          justify-content: center;
+          text-align: right; } }
+      .header .container .bravo .menu {
+        display: flex; }
+        .header .container .bravo .menu .link {
+          padding: 5px 10px;
+          border-radius: 2px;
+          background: #fff;
+          color: #999;
+          font-size: 16px; }
+          .header .container .bravo .menu .link:first-child {
+            margin-right: 5px; }
+          .header .container .bravo .menu .link:hover {
+            background: orange;
+            color: #fff; }
+      .header .container .bravo .packages {
+        margin-top: 10px;
+        font-family: 'Lucida Console', serif;
+        font-size: 14px;
+        line-height: 18px; }
+        .header .container .bravo .packages pre {
+          margin: 0; }
+        @media (max-width: 767px) {
+          .header .container .bravo .packages {
+            font-size: 11px; } }
 
 .title,
 .sub-title,
@@ -207,10 +252,12 @@ h1, h2, h3, h4 {
   font-size: 22px; }
 
 .example-html {
-  padding: 0 20px;
+  padding: 20px;
   background: orange;
   color: #333;
-  border-radius: 15px 0 15px;
+  border-radius: 25px 0 25px;
+  font-size: 40px;
+  font-weight: 700;
   text-shadow: -2px 2px 0 #fff, -4px 4px 0 rgba(255, 255, 255, 0.5);
   overflow: hidden; }
 

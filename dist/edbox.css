@@ -102,12 +102,20 @@
     .edbox.edbox-alert.edbox-alert-danger .edbox-alert-container {
       border-color: #ff3814;
       background: tomato; }
-  .edbox .edbox-animate-open {
-    -webkit-animation: edbox-animate-open .35s ease-in-out forwards;
-            animation: edbox-animate-open .35s ease-in-out forwards; }
+  .edbox .edbox-animate-open,
   .edbox .edbox-animate-close {
-    -webkit-animation: edbox-animate-close .35s ease-in-out forwards;
-            animation: edbox-animate-close .35s ease-in-out forwards; }
+    -webkit-animation-duration: .35s;
+            animation-duration: .35s;
+    -webkit-animation-timing-function: ease-in-out;
+            animation-timing-function: ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards; }
+  .edbox .edbox-animate-open {
+    -webkit-animation-name: edbox-animate-open;
+            animation-name: edbox-animate-open; }
+  .edbox .edbox-animate-close {
+    -webkit-animation-name: edbox-animate-close;
+            animation-name: edbox-animate-close; }
 
 .edbox-temp {
   display: none; }

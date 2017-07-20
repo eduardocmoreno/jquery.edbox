@@ -86,10 +86,15 @@
     .edbox.edbox-alert.edbox-alert-danger .edbox-alert-container {
       border-color: #ff3814;
       background: tomato; }
-  .edbox .edbox-animate-open {
-    animation: edbox-animate-open .35s ease-in-out forwards; }
+  .edbox .edbox-animate-open,
   .edbox .edbox-animate-close {
-    animation: edbox-animate-close .35s ease-in-out forwards; }
+    animation-duration: .35s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; }
+  .edbox .edbox-animate-open {
+    animation-name: edbox-animate-open; }
+  .edbox .edbox-animate-close {
+    animation-name: edbox-animate-close; }
 
 .edbox-temp {
   display: none; }
