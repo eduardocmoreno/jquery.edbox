@@ -45,22 +45,18 @@
             <div class="codes">
                 <div class="code-cel">
                     <h4 class="code-title">html</h4>
-<pre><code class="language-markup">&lt;!-- DOM element --&gt;
-&lt;div id="target">My #target element&lt;/div>
-
-&lt;!-- button link --&gt;
-&lt;a href="#" data-box-target="#target" class="link-target">Element target example&lt;/a></code></pre>
+<pre><code class="language-markup">&lt;a href="#" class="link-target" data-box-target="#target">Element target example&lt;/a>
+&lt;div id="target">My #target element&lt;/div></code></pre>
                 </div>
                 <div class="code-cel">
                     <h4 class="code-title">js</h4>
-<pre><code class="language-javascript">//set edbox for the set of matched elements
-$('.link-target').edbox();</code></pre>
+<pre><code class="language-javascript">$('.link-target').edbox();</code></pre>
                 </div>
             </div>
             <div class="target-box">
                 <div id="target">My #target element</div>
             </div>
-            <a href="#" data-box-target="#target" class="btn btn-example link-target">Element target example</a>
+            <a href="#" class="btn btn-example link-target" data-box-target="#target">Element target example</a>
             <p class="tip"><strong>Tip:</strong> A helper class ('.edbox-target') is applied to the target element when it gets inside the modal. So, if you want to show it only when it's inside the modal, set "display: none" to it and "display: block" on helper class.</p>
         </section>
 
@@ -71,12 +67,7 @@ $('.link-target').edbox();</code></pre>
             <div class="codes">
                 <div class="code-cel">
                     <h4 class="code-title">html</h4>
-<pre><code class="language-markup">&lt;!-- 
-What about use a different animation option this time?
-This example uses "animate.css" library by Daniel Eden, take a look at "daneden.github.io/animate.css"
-You can make your own animation too.
---&gt;
-
+<pre><code class="language-markup">&lt;!-- This example uses "animate.css" library by Daniel Eden, take a look at "daneden.github.io/animate.css" --&gt;
 &lt;a href="#" class="link-html"
 data-box-html="&lt;div class='example-html'>Hello there!&lt;/div>"
 data-box-animate-open="animated tada"
@@ -86,8 +77,7 @@ data-box-animate-close="animated flipOutX">
                 </div>
                 <div class="code-cel">
                     <h4 class="code-title">js</h4>
-<pre><code class="language-javascript">//set edbox for the set of matched elements
-$('.link-html').edbox();</code></pre>
+<pre><code class="language-javascript">$('.link-html').edbox();</code></pre>
                 </div>
             </div>
             <a href="#" class="btn btn-example link-html" data-box-html="<div class='example-html'>Hello there!</div>" data-box-animate-open="animated tada" data-box-animate-close="animated flipOutX">HTML content example</a>
@@ -100,13 +90,12 @@ $('.link-html').edbox();</code></pre>
             <div class="codes">
                 <div class="code-cel">
                     <h4 class="code-title">html</h4>
-<pre><code class="language-markup">&lt;!-- use href attribute --&gt;
+<pre><code class="language-markup">&lt;!-- use href or data-box-url attribute --&gt;
 &lt;a href="assets/html/curitiba.html" class="link-url">URL load example&lt;/a></code></pre>
                 </div>
                 <div class="code-cel">
                     <h4 class="code-title">js</h4>
-<pre><code class="language-javascript">//set edbox for the set of matched elements
-$('.link-url').edbox({
+<pre><code class="language-javascript">$('.link-url').edbox({
     //add an extra class to the modal for an especific style
     addClass: 'example-url',
     width: 900
@@ -127,8 +116,7 @@ $('.link-url').edbox({
                 </div>
                 <div class="code-cel">
                     <h4 class="code-title">js</h4>
-<pre><code class="language-javascript">//set edbox for the set of matched elements
-$('.link-image').edbox({
+<pre><code class="language-javascript">$('.link-image').edbox({
     image: 'curitiba-brazil.jpg'
 });</code></pre>
                 </div>
@@ -404,13 +392,13 @@ $.edbox('close');
                 Personal page: <a href="http://edumoreno.com.br" class="hyperlink" title="Visit my personal page">edumoreno.com.br</a>
             </li>
             <li>
-                Github: <a href="https://github.com/eduardocmoreno" class="hyperlink" title="My github projects" target="_blank">github.com/eduardocmoreno</a>
+                Github: <a href="https://github.com/eduardocmoreno" class="hyperlink" title="My github projects" target="_blank">/eduardocmoreno</a>
             </li>
             <li>
-                Facebook: <a href="https://www.facebook.com/eduardomoreno81" class="hyperlink" title="My personal facebook" target="_blank">facebook.com/eduardomoreno81</a>
+                Linkedin: <a href="https://www.linkedin.com/in/eduardocmoreno/" class="hyperlink" title="My linkedin profile" target="_blank">/in/eduardocmoreno</a>
             </li>
             <li>
-                Linkedin: <a href="https://www.linkedin.com/in/eduardocmoreno/" class="hyperlink" title="My linkedin profile" target="_blank">linkedin.com/in/eduardocmoreno</a>
+                Facebook: <a href="https://www.facebook.com/eduardomoreno81" class="hyperlink" title="My personal facebook" target="_blank">/eduardomoreno81</a>
             </li>
         </ul>
 
