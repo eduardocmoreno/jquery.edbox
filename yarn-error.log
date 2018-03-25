@@ -1,0 +1,72 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js publish
+
+PATH: 
+  D:\PROGRAMAS E DRIVERS\CMDER\bin;D:\PROGRAMAS E DRIVERS\CMDER\vendor\conemu-maximus5\ConEmu\Scripts;D:\PROGRAMAS E DRIVERS\CMDER\vendor\conemu-maximus5;D:\PROGRAMAS E DRIVERS\CMDER\vendor\conemu-maximus5\ConEmu;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\ATI Technologies\ATI.ACE\Core-Static;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Program Files (x86)\Yarn\bin\;C:\Users\Eduardo\AppData\Local\Microsoft\WindowsApps;C:\Program Files\Microsoft VS Code\bin;C:\Users\Eduardo\AppData\Roaming\npm;C:\Users\Eduardo\AppData\Local\Yarn\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\share\vim\vim74;D:\PROGRAMAS E DRIVERS\CMDER\
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.3.0
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "jquery.edbox",
+    "version": "2.4.0-rc.1",
+    "main": "dist/jquery.edbox.js",
+    "keywords": [
+      "jquery",
+      "modal",
+      "popup",
+      "box",
+      "plugin",
+      "alerts",
+      "alert"
+    ],
+    "license": "MIT",
+    "dependencies": {
+      "jquery": "^3.0.0"
+    },
+    "devDependencies": {
+      "animate.css": "^3.6.1",
+      "browser-sync": "^2.18.8",
+      "gulp": "^3.9.1",
+      "gulp-autoprefixer": "^3.1.1",
+      "gulp-clean": "^0.3.2",
+      "gulp-clean-css": "^3.0.4",
+      "gulp-concat": "^2.6.1",
+      "gulp-main-bower-files": "^1.6.2",
+      "gulp-rename": "^1.2.2",
+      "gulp-sass": "^3.2.1",
+      "gulp-uglify": "^2.1.2",
+      "gulp-zip": "^4.0.0",
+      "prismjs": "^1.13.0"
+    },
+    "description": "Responsive and lightweight jQuery modal plugin",
+    "repository": "https://github.com/eduardocmoreno/jquery.edbox.git",
+    "author": "Eduardo Moreno <eduardocmoreno@gmail.com>",
+    "private": false
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:128791:13)
+      at Interface.emit (events.js:159:13)
+      at Interface._ttyWrite (readline.js:786:16)
+      at ReadStream.onkeypress (readline.js:165:10)
+      at ReadStream.emit (events.js:159:13)
+      at emitKeys (internal/readline.js:420:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (readline.js:1022:36)
+      at ReadStream.emit (events.js:159:13)
+      at addChunk (_stream_readable.js:265:12)

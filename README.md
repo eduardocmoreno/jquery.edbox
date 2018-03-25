@@ -3,17 +3,17 @@ Responsive and lightweight modal plugin.
 Check for examples at the **[plugin page here](https://eduardocmoreno.github.io/jquery.edbox/)**
 
 ## Download
-**bower:** bower install jquery.edbox --save
+**npm:** npm install jquery.edbox
 
-**npm:** npm install jquery.edbox --save
+**yarn:** yarn add jquery.edbox
 
 **zip:** [download .zip file](https://eduardocmoreno.github.io/jquery.edbox/jquery.edbox.zip)
-
 
 ## Options
 Option | Tag attribute | Type | Default | Description
 --- | --- | --- | --- | ---
 target | data-box-target | string | null | DOM element
+copy | data-box-copy | boolean | false | Use a copy of the element target instead of the element itself. Only works with target option
 html | data-box-html | string | null | html and/or text
 image | data-box-image | string | null | image path
 url | data-box-url | string | null | url path (files, pages, etc...)
@@ -39,6 +39,7 @@ afterClose | data-box-after-close | function | function() {} | Function callback
 ```javascript
 //set edbox for the set of matched elements
 $('.myModalLink').edbox({ options });
+$('[edbox]').edbox({ options });
 
 //Init without assigning any element
 $.edbox({ options });
@@ -51,6 +52,10 @@ $.edbox('close');
 ```
 
 ## Change Log
+**v2.4.0**
+* [JS] - New data-box-clone tag attr option
+* [JS] - New "edbox" tag attr option
+
 **v2.3.0**
 * [JS] - Now it's possible to use all options as tag attribute
 

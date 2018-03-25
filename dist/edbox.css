@@ -2,12 +2,10 @@
   box-sizing: border-box; }
 
 .edbox {
-  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -15,17 +13,15 @@
   height: 100%;
   z-index: 100; }
   .edbox:not(.edbox-alert) {
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
     background: rgba(0, 0, 0, 0.5); }
   .edbox .edbox-close {
     transition: .35s;
     cursor: pointer; }
     .edbox .edbox-close:before {
       display: block;
-      -webkit-transform: rotate(45deg);
-              transform: rotate(45deg);
+      transform: rotate(45deg);
       line-height: 0.5;
       font-family: Lucida;
       font-size: 30px;
@@ -36,13 +32,10 @@
     background: url("../images/loading.svg") center no-repeat #fff;
     background-size: 40px; }
   .edbox .edbox-body {
-    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: column;
-            flex-flow: column;
+    -ms-flex-flow: column;
+    flex-flow: column;
     position: relative;
     max-width: calc(100% - 60px);
     max-height: calc(100% - 60px); }
@@ -75,13 +68,11 @@
   .edbox.edbox-close-false .edbox-close {
     display: none; }
   .edbox.edbox-alert {
-    -webkit-box-align: start;
-        -ms-flex-align: start;
-            align-items: flex-start;
+    -ms-flex-align: start;
+    align-items: flex-start;
     padding-top: 30px;
     font: 16px Arial, sans-serif; }
     .edbox.edbox-alert .edbox-alert-container {
-      display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
       padding: 15px;
@@ -104,50 +95,27 @@
       background: tomato; }
   .edbox .edbox-animate-open,
   .edbox .edbox-animate-close {
-    -webkit-animation-duration: .35s;
-            animation-duration: .35s;
-    -webkit-animation-timing-function: ease-in-out;
-            animation-timing-function: ease-in-out;
-    -webkit-animation-fill-mode: forwards;
-            animation-fill-mode: forwards; }
+    animation-duration: .35s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; }
   .edbox .edbox-animate-open {
-    -webkit-animation-name: edbox-animate-open;
-            animation-name: edbox-animate-open; }
+    animation-name: edbox-animate-open; }
   .edbox .edbox-animate-close {
-    -webkit-animation-name: edbox-animate-close;
-            animation-name: edbox-animate-close; }
+    animation-name: edbox-animate-close; }
 
 .edbox-temp {
   display: none; }
 
-@-webkit-keyframes edbox-animate-open {
-  from {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
-    opacity: 0; }
-  to {
-    opacity: 1; } }
-
 @keyframes edbox-animate-open {
   from {
-    -webkit-transform: translateY(-20px);
-            transform: translateY(-20px);
+    transform: translateY(-20px);
     opacity: 0; }
   to {
     opacity: 1; } }
-
-@-webkit-keyframes edbox-animate-close {
-  from {
-    opacity: 1; }
-  to {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
-    opacity: 0; } }
 
 @keyframes edbox-animate-close {
   from {
     opacity: 1; }
   to {
-    -webkit-transform: translateY(20px);
-            transform: translateY(20px);
+    transform: translateY(20px);
     opacity: 0; } }

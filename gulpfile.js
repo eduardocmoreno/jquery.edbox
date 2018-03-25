@@ -1,126 +1,122 @@
 //global
-var browserSync    = require('browser-sync').create();
-var clean          = require('gulp-clean');
-var filter         = require('gulp-filter');
-var gulp           = require('gulp');
-var rename         = require('gulp-rename');
-var zip            = require('gulp-zip');
+var browserSync = require('browser-sync').create();
+var clean = require('gulp-clean');
+var concat = require('gulp-concat');
+var gulp = require('gulp');
+var rename = require('gulp-rename');
+var zip = require('gulp-zip');
 
 //css
-var autoprefixer   = require('gulp-autoprefixer');
-var cleanCSS       = require('gulp-clean-css');
-var sass           = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var cleanCSS = require('gulp-clean-css');
+var sass = require('gulp-sass');
 
 //js
-var uglify         = require('gulp-uglify');
-
-//bower
-var bower          = require('bower');
-var mainBowerFiles = require('gulp-main-bower-files');
+var uglify = require('gulp-uglify');
 
 //Log de erros
-function logError (error) {
-    console.log(error.toString());
-    this.emit('end');
+function logError(error) {
+  console.log(error.toString());
+  this.emit('end');
 }
 
-//Limpa os diretorios dos componentes do bower
-gulp.task('bowerClean', function(){
-    return gulp.src('docs/assets/components/*')
-    .pipe(clean());
+//JS Dev Files
+var jsFiles = [
+  'node_modules/prismjs/prism.js',
+  'node_modules/jquery/dist/jquery.js',
+  'docs/assets/js/jquery.edbox.js'
+]
+
+//JS - dev
+gulp.task('js:dev', function () {
+  return gulp.src(jsFiles)
+    .pipe(concat('app.js'))
+    .pipe(gulp.dest('docs/assets/js'))
+    .pipe(browserSync.stream());
 });
 
-//Copia os arquivos bower para a pasta public
-gulp.task('bower', ['bowerClean'], function(){
-    return bower.commands.update().on('end', function(){
-        var jsFilter = filter('**/*.js', {restore: true});
-        var cssFilter = filter('**/*.css', {restore: true});
-
-        gulp.src('bower.json')
-        .pipe(mainBowerFiles())
-        .pipe(jsFilter)
-        .pipe(uglify({
-            preserveComments: 'license'
-        }))
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('docs/assets/components'))
-        .pipe(jsFilter.restore)
-
-        .pipe(cssFilter)
-        .pipe(cleanCSS())
-        .pipe(rename({
-            suffix: '.min'
-        }))
-        .pipe(gulp.dest('docs/assets/components'));
-    });
+//JS - docs dist
+gulp.task('js:docs:dist', function () {
+  return gulp.src(jsFiles)
+    .pipe(concat('app.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('docs/assets/js'));
 });
 
-//JS - distribution
-gulp.task('js:dist', function(){
-    return gulp.src('docs/assets/js/**/*.js')
+//JS - module dist
+gulp.task('js:module:dist', function () {
+  return gulp.src('docs/assets/js/jquery.edbox.js')
     .pipe(gulp.dest('dist'))
     .pipe(uglify({
-        preserveComments: 'all'
+      preserveComments: 'all'
     }))
     .pipe(rename({
-        suffix: '.min'
+      suffix: '.min'
     }))
     .pipe(gulp.dest('dist'));
 });
 
-//SASS-CSS - development
-gulp.task('sass:dev', function() {
-    return gulp.src('docs/assets/scss/**/*.scss')
+//SASS-CSS files
+var cssDevFiles = [
+  'node_modules/prismjs/themes/prism.css',
+  'node_modules/animate.css/animate.css',
+  'docs/assets/scss/edbox.scss',
+  'docs/assets/scss/app.scss',
+]
+
+//SASS-CSS - dev
+gulp.task('sass:dev', function () {
+  return gulp.src(cssDevFiles)
     .pipe(sass().on('error', sass.logError))
+    .pipe(concat('app.css'))
     .pipe(gulp.dest('docs/assets/css'))
     .pipe(browserSync.stream());
 });
 
-//SASS-CSS - distribution
-gulp.task('sass:dist', function() {
-    return gulp.src('docs/assets/scss/edbox.scss')
+//SASS-CSS - dist
+gulp.task('sass:dist', function () {
+  return gulp.src('docs/assets/scss/edbox.scss')
     .pipe(gulp.dest('dist'))
-    .pipe(sass().on('error', sass.logError))
     .pipe(autoprefixer())
+    .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('dist'))
     .pipe(cleanCSS())
     .pipe(rename({
-        suffix: '.min'
+      suffix: '.min'
     }))
     .pipe(gulp.dest('dist'));
 });
 
 //Assets - distribution
-gulp.task('assets:dist', function(){
-    return gulp.src('docs/assets/images/loading.svg')
+gulp.task('assets:dist', function () {
+  return gulp.src('docs/assets/images/loading.svg')
     .pipe(gulp.dest('dist'));
 });
 
 //Clean dist folder
-gulp.task('clean:dist', function(){
-    return gulp.src('dist')
+gulp.task('clean:dist', function () {
+  return gulp.src('dist')
     .pipe(clean());
 });
 
 //Default task
-gulp.task('default', function(){
-    browserSync.init({
-        server: "docs"
-    });
-    gulp.watch('docs/assets/scss/**/*.scss', ['sass:dev']);
-    gulp.watch(['**/*.html','docs/assets/js/**/*.js']).on('change', browserSync.reload);
+gulp.task('default', function () {
+  browserSync.init({
+    server: "docs"
+  });
+  gulp.watch('docs/assets/scss/**/*.scss', ['sass:dev']);
+  gulp.watch('docs/assets/js/**/*.js', ['js:dev']);
+  gulp.watch('**/*.html').on('change', browserSync.reload);
 });
 
 //Dist task
-gulp.task('dist', ['clean:dist'], function(){
-    return gulp.start('sass:dist','js:dist','assets:dist');
+gulp.task('dist', ['clean:dist'], function () {
+  return gulp.start('sass:dist', 'js:docs:dist', 'js:module:dist', 'assets:dist');
 });
 
 //Zip task
-gulp.task('zip', function(){
-    gulp.src('dist/**')
+gulp.task('zip', function () {
+  gulp.src('dist/**')
     .pipe(zip('docs/jquery.edbox.zip'))
     .pipe(gulp.dest('./'));
 });
