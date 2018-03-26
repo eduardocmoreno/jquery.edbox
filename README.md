@@ -52,7 +52,7 @@ $.edbox('close');
 ```
 
 ## Change Log
-**v2.4.0**
+**v2.5.0**
 * [JS] - New data-box-clone tag attr option
 * [JS] - New "edbox" tag attr option
 
