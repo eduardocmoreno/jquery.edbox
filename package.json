@@ -19,7 +19,7 @@
     "animate.css": "^3.6.1",
     "browser-sync": "^2.18.8",
     "gulp": "^3.9.1",
-    "gulp-autoprefixer": "^3.1.1",
+    "gulp-autoprefixer": "^8.0.0",
     "gulp-clean": "^0.3.2",
     "gulp-clean-css": "^3.0.4",
     "gulp-concat": "^2.6.1",
